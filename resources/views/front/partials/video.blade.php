@@ -4,7 +4,7 @@
 
             <div class="video bg-overlay bg-overlay-dark" id="video1">
                 <div class="bg-section"><img src="{{ asset('uploads/videos/'.$video->image) }}" alt="background" /></div>
-                <div class="player"><a class="popup-video" href="{{ $video->link_youtube }}"> <i class="fas fa-play"></i></a></div>
+                <div class="player"><a class="popup-video" href="{{ app()->getLocale() == "ar" ? $video->link_youtube_ar : $video->link_youtube }}"> <i class="fas fa-play"></i></a></div>
             </div>
 
         </div>

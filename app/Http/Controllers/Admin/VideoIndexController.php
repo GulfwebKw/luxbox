@@ -86,6 +86,7 @@ class VideoIndexController extends Controller
         $this->validate($request, [
             'image' => 'mimes:jpeg,png,jpg,gif,svg',
             'link_youtube' => 'required',
+            'link_youtube_ar' => 'required',
         
         ]);
 
@@ -94,7 +95,8 @@ class VideoIndexController extends Controller
 
         $resource = new VideoIndex();
         $resource->link_youtube = $request->input('link_youtube');
-   
+        $resource->link_youtube_ar = $request->input('link_youtube_ar');
+
         $resource->is_active = !empty($request->input('is_active')) ? '1' : '0';
         $resource->image = $image;
         $resource->save();
@@ -147,6 +149,7 @@ class VideoIndexController extends Controller
         //field validation
         $this->validate($request, [
             'link_youtube' => 'required',
+            'link_youtube_ar' => 'required',
         ]);
 
         $resource = $this->model::find($id);
@@ -155,7 +158,8 @@ if($request->image){
 $resource->image = $image;
 }
         $resource->link_youtube = $request->input('link_youtube');
-        
+        $resource->link_youtube_ar = $request->input('link_youtube_ar');
+
         $resource->is_active = !empty($request->input('is_active')) ? '1' : '0';
         
         $resource->save();

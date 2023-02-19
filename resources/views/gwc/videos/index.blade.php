@@ -22,7 +22,8 @@
                         {{$p}}
                     </td>
                     <td>
-                        {!! $resource->link_youtube !!}
+                        {!! $resource->link_youtube !!}<br>
+                        {!! $resource->link_youtube_ar !!}
                     </td>
                   
                     <td>

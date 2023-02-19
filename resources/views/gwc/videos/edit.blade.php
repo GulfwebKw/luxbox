@@ -12,9 +12,17 @@
                 <div class="row">
                     <div class="col-md-6">
                         @component('gwc.components.editTextInput', [
-                            'label' => 'Youtube Link',
+                            'label' => 'Youtube Link (EN)',
                             'name' => 'link_youtube',
                             'value'=>$resource->link_youtube,
+                            'required' => true
+                        ]) @endcomponent
+                    </div>
+                    <div class="col-md-6">
+                        @component('gwc.components.editTextInput', [
+                            'label' => 'Youtube Link (AR)',
+                            'name' => 'link_youtube_ar',
+                            'value'=>$resource->link_youtube_ar,
                             'required' => true
                         ]) @endcomponent
                     </div>
