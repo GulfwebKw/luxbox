@@ -4,6 +4,7 @@
     <form name="tFrm" id="form_validation" method="post" class="kt-form" enctype="multipart/form-data"
           action="{{route($data['updateRoute'],$resource->id)}}">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        @method('PUT')
         <div class="kt-portlet__body">
 
             <!-- title -->
