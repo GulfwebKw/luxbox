@@ -5,7 +5,7 @@ return [
         'services' => 'خدمات',
         'How_it_Works' => 'كيف تعمل',
         'Shipping_Cost' => 'تكلفة الشحن',
-        'Home' => 'مسكن',
+        'Home' => 'الرئيسية',
         'FAQ' => 'التعليمات',
         'Blog' => 'مدونة',
         'Contact_Us' => 'اتصل بنا',

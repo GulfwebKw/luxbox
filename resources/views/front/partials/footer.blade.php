@@ -55,7 +55,15 @@
                     <div class="widget-content">
                         <p>{{ __('website.content.Quick_Contact_description') }}</p>
                         <ul>
-                            <li class="phone"><a href="tel:{{getSetting('setting')['phone']}}" target="_blank"><i class="fa fa-phone fa-lg"></i> {{getSetting('setting')['phone']}}</a></li>
+                            <li class="phone">
+                                <a href="tel:{{getSetting('setting')['phone']}}" target="_blank">
+                                    @if ( app()->getLocale() == "ar" )
+                                        {{getSetting('setting')['phone']}} <i class="fa fa-phone fa-lg"></i>
+                                    @else
+                                        <i class="fa fa-phone fa-lg"></i> {{getSetting('setting')['phone']}}
+                                    @endif
+                                </a>
+                            </li>
                             <li class="address">{{getSetting('setting')['address_'.$lang]}}</li>
                         </ul>
                     </div>
