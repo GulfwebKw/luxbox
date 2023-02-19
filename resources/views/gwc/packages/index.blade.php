@@ -26,7 +26,7 @@
                         {{$p}}
                     </td>
                     <td>
-                        {!! $resource['member']->fullname !!}
+                        {!! $resource['member'] ? $resource['member']->fullname : "Member deleted!" !!}
                     </td>
                     <td>
                         {!! '#' .$resource->order !!}
