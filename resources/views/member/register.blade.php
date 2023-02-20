@@ -241,14 +241,29 @@
                                            placeholder="{{ __('website.member.Street') }}" required/>
                                 </div>
                                 <div class="col-12 col-lg-4">
-                                    <label>{{ __('website.member.Avenue') }} <span>*</span></label>
+                                    <label>{{ __('website.member.Avenue') }} </label>
                                     <input class="form-control" type="text" name="avenue" value="{{ old('avenue') }}"
-                                           placeholder="{{ __('website.member.Avenue') }}" required/>
+                                           placeholder="{{ __('website.member.Avenue') }}" />
                                 </div>
                                 <div class="col-12 col-lg-4">
                                     <label>{{ __('website.member.Home_PACI') }} <i data-toggle="modal" data-target="#homePCAIHelp" class="fa fa-question-circle ml-1 mr-1" style="cursor: pointer;" ></i><span>*</span></label>
                                     <input class="form-control" type="text" name="home_paci" value="{{ old('home_paci') }}"
                                            placeholder="{{ __('website.member.Home_PACI') }}" required/>
+                                </div>
+                                <div class="col-12 col-lg-4">
+                                    <label>{{ __('website.member.building_number') }} <span>*</span></label>
+                                    <input class="form-control" type="text" name="building_number" value="{{ old('building_number') }}"
+                                           placeholder="{{ __('website.member.building_number') }}" required/>
+                                </div>
+                                <div class="col-12 col-lg-4">
+                                    <label>{{ __('website.member.floor') }} </label>
+                                    <input class="form-control" type="text" name="floor" value="{{ old('floor') }}"
+                                           placeholder="{{ __('website.member.floor') }}"/>
+                                </div>
+                                <div class="col-12 col-lg-4">
+                                    <label>{{ __('website.member.apartment_office_number') }} </label>
+                                    <input class="form-control" type="text" name="apartment_office_number" value="{{ old('apartment_office_number') }}"
+                                           placeholder="{{ __('website.member.apartment_office_number') }}"/>
                                 </div>
                                 <div class="col-12 col-lg-12"></div>
                                 <div class="col-12">&nbsp;</div>

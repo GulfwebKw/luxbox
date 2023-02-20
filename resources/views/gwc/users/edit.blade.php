@@ -120,8 +120,7 @@
                         @component('gwc.components.editTextInput', [
                             'label' => 'Referral Code',
                             'name' => 'referral_code',
-                            'value'=>$resource->referral_code,
-                            'required' => true
+                            'value'=>$resource->referral_code
                         ]) @endcomponent
                     </div>
                 </div>
@@ -181,8 +180,7 @@
                         @component('gwc.components.editTextInput', [
                             'label' => 'Jaddeh',
                             'name' => 'avenue',
-                            'value'=>$resource->avenue,
-                            'required' => true
+                            'value'=>$resource->avenue
                         ]) @endcomponent
                     </div>
                     <div class="col-md-4">
@@ -191,6 +189,28 @@
                             'name' => 'home_paci',
                             'value'=>$resource->home_paci,
                             'required' => true
+                        ]) @endcomponent
+                    </div>
+                    <div class="col-md-4">
+                        @component('gwc.components.editTextInput', [
+                            'label' => 'Building number',
+                            'name' => 'building_number',
+                            'value'=>$resource->building_number,
+                            'required' => true
+                        ]) @endcomponent
+                    </div>
+                    <div class="col-md-4">
+                        @component('gwc.components.editTextInput', [
+                            'label' => 'Floor',
+                            'name' => 'floor',
+                            'value'=>$resource->floor
+                        ]) @endcomponent
+                    </div>
+                    <div class="col-md-4">
+                        @component('gwc.components.editTextInput', [
+                            'label' => 'apartment/office number',
+                            'name' => 'apartment_office_number',
+                            'value'=>$resource->apartment_office_number
                         ]) @endcomponent
                     </div>
 
@@ -236,8 +256,7 @@
                         @component('gwc.components.createTextInput', [
                             'label' => 'Password',
                             'name' => 'password',
-                            'type' => 'password',
-                            'required' => true
+                            'type' => 'password'
                         ]) @endcomponent
                     </div>
                 </div>

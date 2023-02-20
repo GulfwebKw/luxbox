@@ -108,8 +108,7 @@
                     <div class="col-md-4">
                         @component('gwc.components.createTextInput', [
                             'label' => 'Referral Code',
-                            'name' => 'referral_code',
-                            'required' => true
+                            'name' => 'referral_code'
                         ]) @endcomponent
                     </div>
                 </div>
@@ -166,8 +165,7 @@
                     <div class="col-md-4">
                         @component('gwc.components.createTextInput', [
                             'label' => 'Jaddeh',
-                            'name' => 'avenue',
-                            'required' => true
+                            'name' => 'avenue'
                         ]) @endcomponent
                     </div>
                     <div class="col-md-4">
@@ -175,6 +173,25 @@
                             'label' => 'Home PACI',
                             'name' => 'home_paci',
                             'required' => true
+                        ]) @endcomponent
+                    </div>
+                    <div class="col-md-4">
+                        @component('gwc.components.createTextInput', [
+                            'label' => 'Building number',
+                            'name' => 'building_number',
+                            'required' => true
+                        ]) @endcomponent
+                    </div>
+                    <div class="col-md-4">
+                        @component('gwc.components.createTextInput', [
+                            'label' => 'Floor',
+                            'name' => 'floor'
+                        ]) @endcomponent
+                    </div>
+                    <div class="col-md-4">
+                        @component('gwc.components.createTextInput', [
+                            'label' => 'apartment/office number',
+                            'name' => 'apartment_office_number'
                         ]) @endcomponent
                     </div>
 

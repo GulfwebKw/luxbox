@@ -117,7 +117,10 @@ class AdminUsersController extends Controller
         $member->area = $request->input('area');
         $member->block = $request->input('block');
         $member->street = $request->input('street');
+        $member->floor = $request->input('floor');
+        $member->apartment_office_number = $request->input('apartment_office_number');
         $member->avenue = $request->input('avenue');
+        $member->building_number = $request->input('building_number');
         $member->twitter = $request->input('twitter');
         $member->instagram = $request->input('instagram');
         $member->tiktok = $request->input('tiktok');
@@ -210,7 +213,7 @@ class AdminUsersController extends Controller
             'phone' => $request->input('phone'),
             'company_name' => $request->input('company_name'),
             'email' => $request->input('email'),
-            'password' => Hash::make(request('password')),
+            'password' => request('password' , false) ? Hash::make(request('password')) : $resource->password ,
             'language_id' => $request->input('language_id'),
             'referral_code' => $request->input('referral_code'),
             'country' => $request->input('country'),
@@ -220,6 +223,9 @@ class AdminUsersController extends Controller
             'is_active' => !empty($request->input('is_active')) ? '1' : '0',
             'street' => $request->input('street'),
             'avenue' => $request->input('avenue'),
+            'building_number' => $request->input('building_number'),
+            'floor' => $request->input('floor'),
+            'apartment_office_number' => $request->input('apartment_office_number'),
             'twitter' => $request->input('twitter'),
             'instagram' => $request->input('instagram'),
             'tiktok' => $request->input('tiktok'),

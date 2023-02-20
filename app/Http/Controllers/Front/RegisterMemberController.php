@@ -45,6 +45,7 @@ class RegisterMemberController extends Controller
             'account_type_id' => 'required|exists:account_types,id',
             'lang_id' => 'required|exists:languages,id',
             'first_name' => 'required',
+            'building_number' => 'required',
             'last_name' => 'required',
             'phone' => 'required',
             'country' => 'required',
@@ -52,7 +53,6 @@ class RegisterMemberController extends Controller
             'area' => 'required',
             'block' => 'required',
             'street' => 'required',
-            'avenue' => 'required',
             'home_paci' => 'required',
         ]);
        $member=new Member();
@@ -66,6 +66,9 @@ class RegisterMemberController extends Controller
        $member->password = Hash::make(request('password'));
        $member->language_id = $request->input('lang_id');
        $member->referral_code = $request->input('referral_code');
+       $member->building_number = $request->input('building_number');
+       $member->floor = $request->input('floor');
+       $member->apartment_office_number = $request->input('apartment_office_number');
        $member->country = $request->input('country');
        $member->city = $request->input('city');
        $member->area = $request->input('area');

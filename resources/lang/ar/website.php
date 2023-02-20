@@ -68,6 +68,7 @@ return [
     'member' => [
         'Forgot_Password' => 'هل نسيت كلمة السر',
         'Email_Address' => 'عنوان البريد الالكترونى',
+        'building_number'=> 'رقم المبنى',
         'New_Password' => 'كلمة السر الجديدة',
         'Confirm_New_password' => 'تأكيد كلمة المرور الجديدة',
         'Reset_Password' => 'إعادة تعيين كلمة المرور',
@@ -75,6 +76,8 @@ return [
         'Login_Here' => 'تسجيل الدخول من هنا',
         'Password' => 'كلمة المرور',
         'Forget_Password' => 'نسيت كلمة المرور؟',
+        'floor' => 'طابق',
+        'apartment_office_number'=> 'رقم الشقة / المكتب',
         'Login' => 'تسجيل الدخول',
         'Dont_have_Account' => 'ليس لديك حساب؟',
         'Register_Now' => 'سجل الان',
