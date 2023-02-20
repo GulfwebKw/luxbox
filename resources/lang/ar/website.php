@@ -7,6 +7,7 @@ return [
         'Shipping_Cost' => 'تكلفة الشحن',
         'Home' => 'الرئيسية',
         'FAQ' => 'التعليمات',
+        'stores' => 'المتاجر',
         'Blog' => 'مدونة',
         'Contact_Us' => 'اتصل بنا',
         'My_Account' => 'حسابي',

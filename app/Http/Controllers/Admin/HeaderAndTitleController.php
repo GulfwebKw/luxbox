@@ -127,6 +127,13 @@ class HeaderAndTitleController extends Controller
             //set upload directory
             $path4 = $request->file('image_header_aboutus')->move('uploads/headers', $imageAboutUs);
         }
+        $imageStores=$resource->image_header_stores;
+        if ($request->file('image_header_stores')) {
+            $imagePath10 = $request->file('image_header_stores');
+            $imageStores = 'image-buttom-'.md5(time()).'.'.$request->image_header_stores->getClientOriginalExtension();
+            //set upload directory
+            $path10 = $request->file('image_header_stores')->move('uploads/headers', $imageStores);
+        }
         $imageFaq=$resource->image_header_faq;
         if ($request->file('image_header_faq')) {
             $imagePath5 = $request->file('image_header_faq');
@@ -175,6 +182,8 @@ class HeaderAndTitleController extends Controller
         $resource->title_services_details_ar = $request->input('title_services_details_ar');
         $resource->title_aboutus_en = $request->input('title_aboutus_en');
         $resource->title_aboutus_ar = $request->input('title_aboutus_ar');
+        $resource->title_stores_en = $request->input('title_stores_en');
+        $resource->title_stores_ar = $request->input('title_stores_ar');
         $resource->title_faq_en = $request->input('title_faq_en');
         $resource->title_faq_ar = $request->input('title_faq_ar');
         $resource->title_blog_en = $request->input('title_blog_en');
@@ -193,6 +202,7 @@ class HeaderAndTitleController extends Controller
         $resource->image_header_how_it_work = $imageHowToWork;
         $resource->image_header_services = $imageServivces;
         $resource->image_header_aboutus = $imageAboutUs;
+        $resource->image_header_stores = $imageStores;
         $resource->image_header_faq = $imageFaq;
         $resource->image_header_blog = $imageBlog;
         $resource->image_header_contactus = $imageContactUs;

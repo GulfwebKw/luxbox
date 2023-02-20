@@ -116,6 +116,12 @@ Route::namespace('Admin')->prefix('gwc')->middleware('admin')->group(function ()
     Route::resource('abouts', 'AboutUsController');
     Route::get('abouts/delete/{id}', 'AboutUsController@destroy');
     Route::get('/abouts/deleteimage/{id}/{field}', 'AboutUsController@deleteImage');
+    //stores
+
+    Route::get('stores/ajax/{id}', 'StoresController@updateStatusAjax');
+    Route::resource('stores', 'StoresController');
+    Route::get('stores/delete/{id}', 'StoresController@destroy');
+    Route::get('/stores/deleteimage/{id}/{field}', 'StoresController@deleteImage');
     //video index
     Route::get('videos/ajax/{id}', 'VideoIndexController@updateStatusAjax');
     Route::resource('videos', 'VideoIndexController');
@@ -278,6 +284,7 @@ Route::namespace('Front')->group(function () {
     Route::get('/services', 'ServicesController@index');
     Route::get('/service/{id}', 'ServicesController@show')->name('service');
     Route::get('/about-us', 'AboutUsController@index');
+    Route::get('/stores', 'StoresController@index');
     Route::get('/faq', 'faqController@index');
     Route::get('/blog', 'BlogController@index');
     Route::get('/blog/{id}', 'BlogController@show')->name('blog');

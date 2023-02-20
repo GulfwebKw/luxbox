@@ -7,6 +7,7 @@ return [
       'Shipping_Cost' => 'Shipping Cost',
       'Home' => 'Home',
       'FAQ' => 'FAQ',
+      'stores' => 'Stores',
       'Blog' => 'Blog',
       'Contact_Us' => 'Contact Us',
       'My_Account' => 'My Account',

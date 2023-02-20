@@ -139,6 +139,14 @@
                                     'required' => true
                                 ]) @endcomponent
                             </div>
+                            <div class="col-md-6">
+                                @component('gwc.components.editTextInput', [
+                                    'label' => 'title stores en',
+                                    'name' => 'title_stores_en',
+                                    'value'=>$resource->title_stores_en,
+                                    'required' => true
+                                ]) @endcomponent
+                            </div>
 
 
                         </div>
@@ -254,6 +262,14 @@
                                     'label' => 'title register ar',
                                     'name' => 'title_register_ar',
                                     'value'=>$resource->title_register_ar,
+                                    'required' => true
+                                ]) @endcomponent
+                            </div>
+                            <div class="col-md-6">
+                                @component('gwc.components.editTextInput', [
+                                    'label' => 'title stores ar',
+                                    'name' => 'title_stores_ar',
+                                    'value'=>$resource->title_stores_ar,
                                     'required' => true
                                 ]) @endcomponent
                             </div>
@@ -395,6 +411,21 @@
                     <br>
                     <div class="ml-5">
                         <img src="{!! asset('uploads/headers/' . $resource->image_header_register) !!}" width="80">
+                    </div>
+                    <br>
+                    <div class="container">
+                        <!-- image -->
+                        @php $label = "Image Header Stores"; @endphp
+                        @php $field = 'image_header_stores'; @endphp
+                        @component('gwc.components.editImageUpload', [
+                            'label' => $label,
+                            'name' => $field,
+                            'value'=>$resource->image_header_stores,
+                        ]) @endcomponent
+                    </div>
+                    <br>
+                    <div class="ml-5">
+                        <img src="{!! asset('uploads/headers/' . $resource->image_header_stores) !!}" width="80">
                     </div>
                     <br>
                 </div>
