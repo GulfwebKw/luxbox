@@ -158,9 +158,9 @@ class HeaderAndTitleController extends Controller
         $imageLogin=$resource->image_header_login;
         if ($request->file('image_header_login')) {
             $imagePath7 = $request->file('image_header_login');
-            $imageBlog = 'image-buttom-'.md5(time()).'.'.$request->image_header_login->getClientOriginalExtension();
+            $imageLogin = 'image-buttom-'.md5(time()).'.'.$request->image_header_login->getClientOriginalExtension();
             //set upload directory
-            $path7 = $request->file('image_header_login')->move('uploads/headers', $imageBlog);
+            $path7 = $request->file('image_header_login')->move('uploads/headers', $imageLogin);
         }
         $imageRegister=$resource->image_header_register;
         if ($request->file('image_header_register')) {

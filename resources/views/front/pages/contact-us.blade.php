@@ -52,7 +52,7 @@
     </header>
 
     <section class="page-title bg-overlay bg-overlay-dark bg-parallax" id="page-title">
-        <div class="bg-section"><img src="{{asset('uploads/headers/'.$header->image_header_services)}}" alt="Background" /></div>
+        <div class="bg-section"><img src="{{asset('uploads/headers/'.$header->image_header_contactus)}}" alt="Background" /></div>
         <div class="container">
         <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-6">
