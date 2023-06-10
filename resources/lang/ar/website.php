@@ -104,5 +104,6 @@ return [
         'ShippedPackages' => 'الطرود المستلمة',
         'Invoices' => 'الفواتير',
         'RECENTPACKAGES' => 'الحزم الأخيرة',
-    ]
+    ],
+    'notApproved' => 'حسابك غير معتمد',
 ];

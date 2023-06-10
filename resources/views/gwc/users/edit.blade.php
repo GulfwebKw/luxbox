@@ -268,6 +268,14 @@
                 <div class="col-3">
                     @component('gwc.components.createIsActive') @endcomponent
                 </div>
+
+                <div class="col-md-4">
+                    <label>Account Status</label>
+                    <select name="is_approved"  class="form-control" required>
+                        <option value="approved" @if("approved"==$resource->is_approved) selected  @endif>Approved</option>
+                        <option value="reject" @if("reject"==$resource->is_approved) selected  @endif>Reject</option>
+                    </select>
+                </div>
             </div>
 
         </div>

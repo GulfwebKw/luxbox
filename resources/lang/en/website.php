@@ -124,5 +124,6 @@ return [
         'Snapchat' => 'Snapchat',
         'TikTok' => 'TikTok',
         'Home_PACI' => 'Home PACI',
-    ]
+    ],
+    'notApproved' => 'your account not Approved',
 ];

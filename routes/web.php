@@ -201,6 +201,8 @@ Route::namespace('Admin')->prefix('gwc')->middleware('admin')->group(function ()
 
     //users
     Route::resource('users', 'AdminUsersController');
+    Route::get('pending-users', 'AdminUsersController@pendingUsers');
+    Route::get('pending-users/{status}/{id}', 'AdminUsersController@approvedStatus');
     Route::get('users/delete/{id}', 'AdminUsersController@destroy');
         Route::get('/users/ajax/{id}', 'AdminUsersController@updateStatusAjax');
 

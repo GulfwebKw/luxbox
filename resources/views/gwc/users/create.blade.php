@@ -227,6 +227,15 @@
                 <div class="col-3">
                     @component('gwc.components.createIsActive') @endcomponent
                 </div>
+
+
+                <div class="col-md-4">
+                    <label>Account Status</label>
+                    <select name="is_approved"  class="form-control" required>
+                        <option value="approved" selected>Approved</option>
+                        <option value="reject">Reject</option>
+                    </select>
+                </div>
             </div>
 
         </div>

@@ -65,12 +65,61 @@ class AdminUsersController extends Controller
      */
     public function index(Request $request)
     {
-        $resources = $this->model::paginate($this->settings->item_per_page_back);
+        $resources = Member::query()->latest()->when($request->query('q') , function ($query) use($request) {
+            $query->where(function ($builder) use($request) {
+               $builder->where('civil_id' , 'like' , '%'.$request->query('q').'%')
+                    ->orWhere('first_name' , 'like' , '%'.$request->query('q').'%')
+                    ->orWhere('last_name' , 'like' , '%'.$request->query('q').'%')
+                    ->orWhere('last_name' , 'like' , '%'.$request->query('q').'%');
+            });
+        })->paginate($this->settings->item_per_page_back);
         return view('gwc.' . $this->data['path'] . '.index', [
             'data' => $this->data,
             'settings' => $this->settings,
             'resources' => $resources
         ]);
+    }
+
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function pendingUsers(Request $request)
+    {
+        if ( Auth()->guard('admin')->user()->can('users-approved') ) {
+            $resources = Member::query()->where('is_approved', 'pending')
+                ->latest()->when($request->query('q') , function ($query) use($request) {
+                    $query->where(function ($builder) use($request) {
+                        $builder->where('civil_id' , 'like' , '%'.$request->query('q').'%')
+                            ->orWhere('first_name' , 'like' , '%'.$request->query('q').'%')
+                            ->orWhere('last_name' , 'like' , '%'.$request->query('q').'%')
+                            ->orWhere('last_name' , 'like' , '%'.$request->query('q').'%');
+                    });
+                })->paginate($this->settings->item_per_page_back);
+            return view('gwc.' . $this->data['path'] . '.pendingIndex', [
+                'data' => $this->data,
+                'settings' => $this->settings,
+                'resources' => $resources
+            ]);
+        } else
+            abort(403);
+    }
+
+    public function approvedStatus(Request $request, $status , $id)
+    {
+        $resource = $this->model::find($id);
+        $resource->update([
+            'is_approved' => $status,
+        ]);
+        //save logs
+        $key_name = $this->title;
+        $key_id = $resource->id;
+        $message = "User is ".$status.". (" . $resource->id . ")";
+        $created_by = Auth::guard('admin')->user()->id;
+        Common::saveLogs($key_name, $key_id, $message, $created_by);
+        //end save logs
+
+        return redirect()->back()->with('message-success', 'Information is updated successfully');
     }
 
 
@@ -126,6 +175,7 @@ class AdminUsersController extends Controller
         $member->tiktok = $request->input('tiktok');
         $member->snapchat = $request->input('snapchat');
         $member->home_paci = $request->input('home_paci');
+        $member->is_approved = $request->input('is_approved');
         $member->save();
 
         //save logs
@@ -231,6 +281,7 @@ class AdminUsersController extends Controller
             'tiktok' => $request->input('tiktok'),
             'snapchat' => $request->input('snapchat'),
             'home_paci' => $request->input('home_paci'),
+            'is_approved' => $request->input('is_approved'),
         ]);
         //save logs
         $key_name = $this->title;

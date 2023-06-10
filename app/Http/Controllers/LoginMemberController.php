@@ -65,10 +65,16 @@ class LoginMemberController extends Controller
 
 //        return back()->withInput()->with($toast);
         if(Auth::guard('member')->attempt($request->only('email','password'),$request->filled('remember'))){
+            if ( Auth::guard('member')->user()->is_approved != "approved" )
+            {
+                Auth::guard('member')->logout();
+                $toast=Toastr::error(__('website.notApproved'));
+                return redirect('/')->with($toast);
+            }
             //Authentication passed...
             $toast=Toastr::success(__('website.content.Send_Successful'));
 
-            return redirect('/');
+            return redirect('/')->with($toast);
 
         }
 

@@ -8,7 +8,6 @@
             <th>{{__('adminMessage.firstname')}}</th>
             <th>{{__('adminMessage.lastname')}}</th>
             <th>{{__('adminMessage.mobile')}}</th>
-            <th width="10">{{__('adminMessage.status')}}</th>
             <th width="100">{{__('adminMessage.createdat')}}</th>
             <th width="10">{{__('adminMessage.actions')}}</th>
         </tr>
@@ -17,7 +16,7 @@
         @if(count($resources))
             @php $p=1; @endphp
             @foreach($resources as $resource)
-                <tr class="search-body @if($resource->is_approved == "pending" ) bg-warning @elseif($resource->is_approved == "reject" ) bg-danger @endif">
+                <tr class="search-body">
                     <td>
                         {{$p}}
                     </td>
@@ -30,15 +29,6 @@
                     </td>
                     <td>
                         {!! $resource->mobile !!}
-                    </td>
-                    <td>
-                        <span class="kt-switch">
-                            <label>
-                                <input type="checkbox" id="{{ $data['path'] }}" class="change_status"
-                                       value="{{$resource->id}}" {{$resource->is_active?'checked':''}}>
-                                <span></span>
-                            </label>
-                        </span>
                     </td>
                     <td>
                         {!! $resource->created_at !!}
@@ -59,11 +49,17 @@
                                                 </a>
                                             </li>
                                         @endif
-                                        @if(auth()->guard('admin')->user()->can($data['deletePermission']))
+                                        @if(auth()->guard('admin')->user()->can('users-approved'))
                                             <li class="kt-nav__item">
-                                                <a href="javascript:;" data-toggle="modal" data-target="#kt_modal_{{$resource->id}}" class="kt-nav__link">
-                                                    <i class="kt-nav__link-icon flaticon2-trash"></i>
-                                                    <span class="kt-nav__link-text">{{__('adminMessage.delete')}}</span>
+                                                <a href="/gwc/pending-users/approved/{{$resource->id }}" class="kt-nav__link">
+                                                    <i class="kt-nav__link-icon flaticon2-check-mark text-success"></i>
+                                                    <span class="kt-nav__link-text text-success">Approved</span>
+                                                </a>
+                                            </li>
+                                            <li class="kt-nav__item">
+                                                <a href="/gwc/pending-users/reject/{{$resource->id }}" class="kt-nav__link">
+                                                    <i class="kt-nav__link-icon flaticon2-trash text-danger"></i>
+                                                    <span class="kt-nav__link-text text-danger">Reject</span>
                                                 </a>
                                             </li>
                                         @endif
