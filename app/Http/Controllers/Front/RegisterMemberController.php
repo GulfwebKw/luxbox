@@ -46,6 +46,7 @@ class RegisterMemberController extends Controller
             'lang_id' => 'required|exists:languages,id',
             'first_name' => 'required',
             'building_number' => 'required',
+            'civil_id' => 'required',
             'last_name' => 'required',
             'phone' => 'required',
             'country' => 'required',
@@ -77,6 +78,7 @@ class RegisterMemberController extends Controller
        $member->avenue = $request->input('avenue');
        $member->twitter = $request->input('twitter');
        $member->instagram = $request->input('instagram');
+       $member->civil_id = $request->input('civil_id');
        $member->tiktok = $request->input('tiktok');
        $member->snapchat = $request->input('snapchat');
        $member->home_paci = $request->input('home_paci');

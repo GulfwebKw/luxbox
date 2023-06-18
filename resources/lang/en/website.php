@@ -75,6 +75,7 @@ return [
         'Avenue'=> 'Jaddeh',
         'House_Apartment'=> 'House Apartment',
         'Floor'=> 'Floor',
+        'floor'=> 'Floor',
         'apartment_office_number'=> 'Apartment/Office number',
         'Forgot_Password' => 'Forgot Password',
         'Email_Address' => 'Email Address',
