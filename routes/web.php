@@ -270,6 +270,7 @@ Route::namespace('Front')->middleware('auth:member')->group(function () {
     Route::get('show-invoices/{id}', 'AccountInformation@showInvoices')->name('invoices.show');
 
     Route::post("/payment", "PaymentController@payment")->name('payment');
+    Route::post("/payment/pay", "PaymentController@pay")->name('pay-invoice');
 
 //    Route::get('/my-account', function () {
 //        $setting = Settings::where("keyname", "setting")->first();
