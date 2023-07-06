@@ -28,9 +28,9 @@ class PaymentController extends Controller
 //            $url = $tahseel->processing($invoice->shipping_cost, '0', $user->fullname, $user->email, $payment->id, 0);
 //            return Redirect::to($url);
 
-            $header=TitleAndImage::first();
-            $setting=Settings::find(1);
-            return view('member.stripe' , compact('header' , 'setting'));
+            $header = TitleAndImage::first();
+            $setting = Settings::find(1);
+            return view('member.stripe', compact('header', 'setting'));
         } catch (\Exception $e) {
             dd($e->getMessage());
         }
@@ -54,8 +54,8 @@ class PaymentController extends Controller
             ]);
 
             $charge = $stripe->charges->create([
-                'amount' => $invoice->shipping_cost, // Replace with the actual invoice amount
-                'currency' => 'KD', // Replace with the actual currency
+                'amount' => (float)$invoice->shipping_cost, // Replace with the actual invoice amount
+                'currency' => 'usd', // Replace with the actual currency
                 'source' => $token,
                 'description' => 'Payment for Invoice Num.' . $request->id, // Replace with the actual description
             ]);
@@ -65,17 +65,17 @@ class PaymentController extends Controller
                 $payment->update(['payment_mode' => 'Stripe', 'result' => 'success', 'status' => 'paid', 'transaction_id' => '', 'refrence_id' => '', 'payment_id' => '']);
                 $invoice->update(['status' => 'paid']);
                 // Payment successful
-                $toast=Toastr::success('Payment successful.');
+                $toast = Toastr::success('Payment successful.');
                 return redirect()->route('invoices')->with($toast);
             } else {
                 $payment->update(['payment_mode' => 'KNET', 'result' => 'NOT CAPTURED', 'status' => 'failed', 'transaction_id' => '', 'refrence_id' => '', 'payment_id' => '']);
                 // Payment failed
-                $toast=Toastr::error('Payment failed. Please try again.');
-                return redirect()->route('invoices')->with($toast );
+                $toast = Toastr::error('Payment failed. Please try again.');
+                return redirect()->route('invoices')->with($toast);
             }
-        } catch ( \Exception $e ){
-            Log::error('payment error ' . $e->getMessage() , [ $e->getFile() , $e->getLine()]);
-            $toast=Toastr::error('Payment failed. Please try again.');
+        } catch (\Exception $e) {
+            Log::error('payment error ' . $e->getMessage(), [$e->getFile(), $e->getLine()]);
+            $toast = Toastr::error('Payment failed. Please try again.');
             return redirect()->route('invoices')->with($toast);
         }
     }
@@ -94,7 +94,7 @@ class PaymentController extends Controller
             $p->update(['hash' => $payment['hash'], 'inv_no' => $payment['inv_id'], 'payment_mode' => $res['type'], 'result' => $res['Result'], 'status' => 'paid', 'transaction_id' => $res['TranID'], 'refrence_id' => $res['Ref'], 'payment_id' => $res['PaymentID']]);
             $invoice = $p->invoice;
             $invoice->update(['status' => 'paid']);
-                return view('member.returnInvoice', compact('p', 'setting'));
+            return view('member.returnInvoice', compact('p', 'setting'));
 
         } else {
             $title = __("ERROR");
