@@ -54,7 +54,7 @@ class PaymentController extends Controller
             ]);
 
             $charge = $stripe->charges->create([
-                'amount' => (float)$invoice->shipping_cost, // Replace with the actual invoice amount
+                'amount' => ((float)$invoice->shipping_cost) * 100, // Replace with the actual invoice amount
                 'currency' => 'usd', // Replace with the actual currency
                 'source' => $token,
                 'description' => 'Payment for Invoice Num.' . $request->id, // Replace with the actual description
