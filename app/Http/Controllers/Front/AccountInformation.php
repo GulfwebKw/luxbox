@@ -6,6 +6,7 @@ use App\Package;
 use App\PackageInvoice;
 use App\Settings;
 use App\TitleAndImage;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\About;
@@ -19,8 +20,8 @@ class AccountInformation extends Controller
     {
 
         $setting = Settings::where("keyname", "setting")->first();
-        $packages = Package::doesntHave('invoice')
-        ->where(['member_id'=> Auth::id()])->get();
+//        $packages = Package::doesntHave('invoice')->where(['member_id'=> Auth::id()])->get();
+        $packages = Package::query()->where(['member_id'=> Auth::id()])->where('created_at' , '>' , Carbon::now()->subMonths(6))->latest()->get();
         return view('member.my-account',compact( 'setting', 'packages'));
     }
 
