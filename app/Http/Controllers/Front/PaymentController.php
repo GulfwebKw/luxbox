@@ -30,7 +30,8 @@ class PaymentController extends Controller
 
             $header = TitleAndImage::first();
             $setting = Settings::find(1);
-            return view('member.stripe', compact('header', 'setting'));
+            $package = $invoice->package;
+            return view('member.stripe', compact('header', 'setting' , 'package'));
         } catch (\Exception $e) {
             dd($e->getMessage());
         }

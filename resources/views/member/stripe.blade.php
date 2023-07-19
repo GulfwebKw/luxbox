@@ -131,6 +131,32 @@
             <div class="cases-standard">
                 <div class="container">
                     <div class="row justify-content-center">
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header">{{ __('Package Details') }}</div>
+
+                                <div class="card-body">
+                                    <ul class="my_list">
+                                        <li>Order: <strong class="body_color">#{{$package->order}}</strong></li>
+                                        <li>Order Created: <strong
+                                                    class="body_color">{{$package->created_at->format('y-m-d')}}</strong></li>
+                                        <li>Order Total: <strong
+                                                    class="body_color">{{'$'.$package['invoice']->shipping_cost}}</strong></li>
+                                        <li>Number of Packages: <strong class="body_color">{{$package->boxes_count}}</strong>
+                                        </li>
+                                        <li>Order Status: <strong class="body_color">{{$package->order_status}}</strong></li>
+                                        <li>Order Weight: <strong
+                                                    class="body_color">{{$package->weight . ' '. $package->weight_type}}</strong>
+                                        </li>
+                                        <li>Goods Value: <strong class="body_color">{{'$'.$package->goods_value}}</strong></li>
+                                        <li>Shipping Method: <strong class="body_color">{{$package->shipping_method}}</strong>
+                                        </li>
+                                        <li>Number Of Consolidated Boxes: <strong
+                                                    class="body_color">{{$package->boxes_count}}</strong></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-8">
                             <div class="card">
                                 <div class="card-header">{{ __('Pay Invoice') }}</div>
