@@ -64,7 +64,7 @@
                             'title' => 'id',
                             'name' => 'payment_method',
                             'foreign_key'=> $resource->payment_method,
-                            'resources' => json_decode(json_encode(array(array('id'=>'Paypal')))),
+                            'resources' => json_decode(json_encode(array(array('id'=>'Stripe')))),
                             'required' => true
                         ]) @endcomponent
                     </div>
