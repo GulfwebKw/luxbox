@@ -148,7 +148,7 @@
                                         <li>Order Weight: <strong
                                                     class="body_color">{{$package->weight . ' '. $package->weight_type}}</strong>
                                         </li>
-                                        <li>Goods Value: <strong class="body_color">{{'$'.$package->goods_value}}</strong></li>
+                                        <li>Goods Value: <strong class="body_color">{{$package->goods_value ? '$'.$package->goods_value : "Unknown"}}</strong></li>
                                         <li>Shipping Method: <strong class="body_color">{{$package->shipping_method}}</strong>
                                         </li>
                                         <li>Number Of Consolidated Boxes: <strong

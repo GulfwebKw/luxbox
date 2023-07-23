@@ -45,8 +45,16 @@ class AccountInformation extends Controller
     public function viewOrder($id)
     {
         $setting = Settings::where("keyname", "setting")->first();
-        $package = Package::with('invoice')->where('invoice_id', '!=', null)->where('member_id', Auth::id())->find($id);
+        $package = Package::with('invoice')->where('member_id', Auth::id())->find($id);
         return view('member.view-order',compact('package', 'setting'));
+    }
+
+    public function updateGoodsValue(Request $request , $id)
+    {
+        $package = Package::where('member_id', Auth::id())->findOrFail($id);
+        $package->goods_value = floatval($request->get('good_value')) > 0 ? floatval($request->get('good_value')) : null ;
+        $package->save();
+        return redirect()->back();
     }
 
     public function invoices()

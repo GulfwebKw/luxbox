@@ -73,8 +73,7 @@
                     <div class="col-md-2">
                         @component('gwc.components.createTextInput', [
                             'label' => 'Good Value',
-                            'name' => 'goods_value',
-                            'required' => true
+                            'name' => 'goods_value'
                         ]) @endcomponent
                     </div>
 

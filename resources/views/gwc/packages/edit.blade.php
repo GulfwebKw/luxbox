@@ -81,8 +81,7 @@
                         @component('gwc.components.editTextInput', [
                             'label' => 'Good Value',
                             'name' => 'goods_value',
-                            'value' =>$resource->goods_value,
-                            'required' => true
+                            'value' =>$resource->goods_value
                         ]) @endcomponent
                     </div>
 

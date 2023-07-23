@@ -164,15 +164,24 @@
                                 <li>Order: <strong class="body_color">#{{$package->order}}</strong></li>
                                 <li>Order Created: <strong
                                             class="body_color">{{$package->created_at->format('y-m-d')}}</strong></li>
+                                @if( $package['invoice'] != null)
                                 <li>Order Total: <strong
                                             class="body_color">{{'$'.$package['invoice']->shipping_cost}}</strong></li>
+                                @endif
                                 <li>Number of Packages: <strong class="body_color">{{$package->boxes_count}}</strong>
                                 </li>
                                 <li>Order Status: <strong class="body_color">{{$package->order_status}}</strong></li>
                                 <li>Order Weight: <strong
                                             class="body_color">{{$package->weight . ' '. $package->weight_type}}</strong>
                                 </li>
-                                <li>Goods Value: <strong class="body_color">{{'$'.$package->goods_value}}</strong></li>
+                                <li>Goods Value:
+                                    <strong class="body_color">{{ $package->goods_value ? '$'.$package->goods_value :""}}</strong>
+                                    @if ( $package->goods_value == null)
+                                        <button class="btn_blue m-1" data-toggle="modal" data-target="#good_value_{{ $package->id }}">
+                                            <i class="fa fa-list-alt"></i> Enter {{ __('adminMessage.good_value') }}
+                                        </button>
+                                    @endif
+                                </li>
                                 <li>Shipping Method: <strong class="body_color">{{$package->shipping_method}}</strong>
                                 </li>
                                 <li>Number Of Consolidated Boxes: <strong
@@ -182,6 +191,31 @@
                             {{--						<button class="btn_blue" onclick="window.location.href='track.html'"><i class="fa fa-ship"></i> Track Order</button>--}}
 
                         </div>
+                        @if ( $package->goods_value == null)
+                            <!-- Modal -->
+                            <div class="modal fade" id="good_value_{{ $package->id }}" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalCenterTitle">{{ __('adminMessage.good_value') }}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{ route('updateGoodsValue' , $package) }}" method="POST">
+                                                @csrf
+                                                <label>Enter {{ __('adminMessage.good_value') }} (USD $)</label>
+                                                <input class="form-control" name="good_value" required placeholder="USD $" type="number" />
+
+                                                <input class="btn btn--primary" type="submit" value="{{ __('webMessage.sendnow') }}"/>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
 
 
                         <!-- <div class="col-12 col-lg-12 mt-50"><h5 class="heading-title">PACKAGES IN ORDER</h5> </div>

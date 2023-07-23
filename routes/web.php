@@ -263,6 +263,7 @@ Route::post('/gwc/get-city-areas', "WebController@getAreas");
 Route::namespace('Front')->middleware('auth:member')->group(function () {
 
     Route::get('/my-account', 'AccountInformation@index')->name('my-account');
+    Route::post('/view-order/{id}/value', 'AccountInformation@updateGoodsValue')->name('updateGoodsValue');
     Route::get('/account-information', 'AccountInformation@acountInformation')->name('account-information');
     Route::get('/shipped-packages', 'AccountInformation@shippedPackages')->name('shipped-packages');
     Route::get('/view-order/{id}', 'AccountInformation@viewOrder')->name('view-order');

@@ -157,22 +157,49 @@
                                                 Package #: {{$package->order}}<br/>
                                                 Quantity: {{$package->boxes_count}}<br/>
                                                 Original track id: <strong
-                                                        class="gray_color">{{$package->original_track_id}}</strong> <a
-                                                        href="#" title="Copy Original Track ID"> &nbsp;<i
-                                                            class="far fa-copy"></i></a><br/>
+                                                        class="gray_color">{{$package->original_track_id}}</strong> <br/>
+                                                {{ __('adminMessage.good_value') }}: {{$package->goods_value ?? "Unknown"}}<br/>
                                             </p>
                                         </div>
                                         <div class="case-more text--center">
                                             {{--											<button class="btn_blue">View Picture</button>--}}
 
-                                            <button class="btn_blue"
+                                            @if ( $package->goods_value == null)
+                                            <button class="btn_blue m-1" data-toggle="modal" data-target="#good_value_{{ $package->id }}">
+                                                <i class="fa fa-list-alt"></i> Enter {{ __('adminMessage.good_value') }}
+                                            </button>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="good_value_{{ $package->id }}" tabindex="-1" role="dialog" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalCenterTitle">{{ __('adminMessage.good_value') }}</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form action="{{ route('updateGoodsValue' , $package) }}" method="POST">
+                                                                    @csrf
+                                                                    <label>Enter {{ __('adminMessage.good_value') }} (USD $)</label>
+                                                                    <input class="form-control" name="good_value" required placeholder="USD $" type="number" />
+
+                                                                    <input class="btn btn--primary" type="submit" value="{{ __('webMessage.sendnow') }}"/>
+
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                            <button class="btn_blue  m-1"
                                                     onclick="window.location.href='{{route('view-order', $package->id)}}'">
                                                 <i
                                                         class="fa fa-eye"></i> View Order
                                             </button> &nbsp;&nbsp;
                                             {{--						<button class="btn_blue" onclick="window.location.href='track.html'"><i class="fa fa-ship"></i> Track Order</button> &nbsp;&nbsp;--}}
                                             @if(optional($package->invoice)->status =='pending')
-                                                <span style="display:inline-block">
+                                                <span class="m-1" style="display:inline-block">
 												<form action="{{route('payment')}}" method="post">
 													@csrf
 													<input type="hidden" name="id" value="{{$package->invoice->id}}">
