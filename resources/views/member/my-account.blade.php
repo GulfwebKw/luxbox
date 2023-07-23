@@ -171,7 +171,7 @@
                                                         class="fa fa-eye"></i> View Order
                                             </button> &nbsp;&nbsp;
                                             {{--						<button class="btn_blue" onclick="window.location.href='track.html'"><i class="fa fa-ship"></i> Track Order</button> &nbsp;&nbsp;--}}
-                                            @if($package->invoice->status =='pending')
+                                            @if(optional($package->invoice)->status =='pending')
                                                 <span style="display:inline-block">
 												<form action="{{route('payment')}}" method="post">
 													@csrf
