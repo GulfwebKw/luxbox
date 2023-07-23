@@ -166,7 +166,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <!-- image -->
-                        @php $label = "Image"; @endphp
+                        @php $label = "Main image (Package image)"; @endphp
                         @php $field = 'image'; @endphp
                         @component('gwc.components.createImageUpload', [
                             'label' => $label,
@@ -204,6 +204,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
     <script type="text/javascript">
         var uploadedDocumentMap = {}
+        Dropzone.prototype.defaultOptions.dictDefaultMessage = "Drop more image (Inside box) here to upload";
         Dropzone.options.documentDropzone = {
             url: '{{ route('dropzone.images.store') }}',
             maxFilesize: 1, // MB
