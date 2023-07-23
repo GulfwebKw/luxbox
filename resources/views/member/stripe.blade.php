@@ -182,19 +182,20 @@
                                         <div class="form-group row">
                                             <label for="expiry_date" class="col-md-4 col-form-label text-md-right">{{ __('Expiry Date') }}</label>
 
-                                            <div class="col-md-3">
-                                                <input type="text" class="form-control @error('expiry_date_year') is-invalid @enderror" name="expiry_date_year" placeholder="{{ __('Year') }}" required autocomplete="expiry_date_year">
 
-                                                @error('expiry_date_year')
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control @error('expiry_date_month') is-invalid @enderror" name="expiry_date_month" placeholder="{{ __('Month') }}" required autocomplete="expiry_date_month">
+
+                                                @error('expiry_date_month')
                                                 <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                                 @enderror
                                             </div>
                                             <div class="col-md-3">
-                                                <input type="text" class="form-control @error('expiry_date_month') is-invalid @enderror" name="expiry_date_month" placeholder="{{ __('Month') }}" required autocomplete="expiry_date_month">
+                                                <input type="text" class="form-control @error('expiry_date_year') is-invalid @enderror" name="expiry_date_year" placeholder="{{ __('Year') }}" required autocomplete="expiry_date_year">
 
-                                                @error('expiry_date_month')
+                                                @error('expiry_date_year')
                                                 <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
