@@ -12,8 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
 
 class PaymentController extends Controller
 {
@@ -63,13 +62,18 @@ class PaymentController extends Controller
 
             // Handle the payment success or failure
             if ($charge->status === 'succeeded') {
-                $payment->update(['payment_mode' => 'Stripe', 'result' => 'success', 'status' => 'paid', 'transaction_id' => '', 'refrence_id' => '', 'payment_id' => '']);
+                $payment->update(['payment_mode' => 'Stripe', 'result' => 'success', 'status' => 'paid', 'transaction_id' => $charge->id, 'refrence_id' => '', 'payment_id' => '']);
                 $invoice->update(['status' => 'paid']);
                 // Payment successful
                 $toast = Toastr::success('Payment successful.');
+                $package = $invoice->package;
+                Mail::send('emails.paySuccess', compact('charge' , 'invoice' , 'package'), function($message) use($user){
+                    $message->to($user->email);
+                    $message->subject('Payment Success');
+                });
                 return redirect()->route('invoices')->with($toast);
             } else {
-                $payment->update(['payment_mode' => 'KNET', 'result' => 'NOT CAPTURED', 'status' => 'failed', 'transaction_id' => '', 'refrence_id' => '', 'payment_id' => '']);
+                $payment->update(['payment_mode' => 'Stripe', 'result' => 'NOT CAPTURED', 'status' => 'failed', 'transaction_id' => '', 'refrence_id' => '', 'payment_id' => '']);
                 // Payment failed
                 $toast = Toastr::error('Payment failed. Please try again.');
                 return redirect()->route('invoices')->with($toast);
