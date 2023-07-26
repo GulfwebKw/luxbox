@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use App\Package;
 use App\category_translation;
 use App\Http\Controllers\Controller;
 use App\Language;
@@ -133,13 +134,18 @@ class orderStatusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->model::find($id)->update([
+        $status = $this->model::find($id);
+        $statusTitle = $status->name;
+        $status->update([
             'name'=>$request->name,
             'can_edit_good_value'=>$request->can_edit_good_value,
             'show_in_received_package'=>$request->show_in_received_package,
             'show_in_shiped_package'=>$request->show_in_shiped_package,
             'is_active'=>!empty($request->input('is_active')) ? '1' : '0',
         ]);
+        if ( $statusTitle != $request->name ){
+            Package::query()->where('order_status' , $statusTitle)->update(['order_status'=>$request->name]);
+        }
         return redirect()->route($this->path . '.index');
     }
 
