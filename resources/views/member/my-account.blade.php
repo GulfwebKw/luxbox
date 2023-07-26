@@ -138,16 +138,15 @@
                                 <div class="case-item-warp">
                                     <div class="case-img">
                                         <div class="work-item-container">
-                                            <div class="work-img"><img
-                                                        src="{{asset('/uploads/packages/'. $package->image)}}"
-                                                        alt="post"/>
-                                                <div class="work-hover">
-                                                    <div class="work-action">
-                                                        <div class="work-zoom"><a class="img-gallery-item"
-                                                                                  href="{{asset('/uploads/packages/'. $package->image)}}"
-                                                                                  title="Post"></a></div>
+                                            <div class="work-img">
+                                                    <img src="{{asset('/uploads/packages/'. $package->image)}}" alt="{{$package->package_type}}"/>
+                                                    <div class="work-hover">
+                                                        <div class="work-action">
+                                                            <div class="work-zoom"></div>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                <a href="{{route('view-order', $package->id)}}">
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
