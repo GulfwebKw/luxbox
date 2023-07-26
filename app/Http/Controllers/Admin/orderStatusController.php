@@ -89,6 +89,9 @@ class orderStatusController extends Controller
     {
         $this->model::create([
             'name'=>$request->name,
+            'can_edit_good_value'=>$request->can_edit_good_value,
+            'show_in_received_package'=>$request->show_in_received_package,
+            'show_in_shiped_package'=>$request->show_in_shiped_package,
             'is_active'=>!empty($request->input('is_active')) ? '1' : '0',
         ]);
         return redirect()->route($this->path . '.index');
@@ -132,6 +135,9 @@ class orderStatusController extends Controller
     {
         $this->model::find($id)->update([
             'name'=>$request->name,
+            'can_edit_good_value'=>$request->can_edit_good_value,
+            'show_in_received_package'=>$request->show_in_received_package,
+            'show_in_shiped_package'=>$request->show_in_shiped_package,
             'is_active'=>!empty($request->input('is_active')) ? '1' : '0',
         ]);
         return redirect()->route($this->path . '.index');
