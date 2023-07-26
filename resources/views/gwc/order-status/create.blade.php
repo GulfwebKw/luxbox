@@ -17,6 +17,33 @@
             </div>
             <div class="form-group">
                 <div class="row">
+                    <div class="col-md-4">
+                        <label>User Can Edit Good Value</label>
+                        <select name="can_edit_good_value"  class="form-control" required>
+                            <option value="1">Yes</option>
+                            <option value="0" selected>No</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label>Show In Shiped Package</label>
+                        <select name="show_in_shiped_package"  class="form-control" required>
+                            <option value="1" >Yes</option>
+                            <option value="0" selected>No</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label>Show In Received Package</label>
+                        <select name="show_in_received_package"  class="form-control" required>
+                            <option value="1" selected >Yes</option>
+                            <option value="0" selected >No</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group row">
                             <!-- is active? -->
