@@ -6,6 +6,7 @@
         <tr>
             <th width="10">#</th>
             <th>{{__('adminMessage.title_en')}}</th>
+            <th>Status</th>
             <th>{{__('adminMessage.active')}}</th>
             <th width="10">{{__('adminMessage.actions')}}</th>
         </tr>
@@ -20,6 +21,11 @@
                     </td>
                     <td>
                         {!! $resource->name !!}
+                    </td>
+                    <td>
+                        @if($resource->can_edit_good_value) <div class="badge badge-warning">User Can Update Good Value</div> @endif
+                        @if($resource->show_in_received_package) <div class="badge badge-info">Show in Received Package</div> @endif
+                        @if($resource->show_in_shiped_package) <div class="badge badge-info">Show in Shiped Package</div> @endif
                     </td>
                     <td>
                         <span class="kt-switch">
