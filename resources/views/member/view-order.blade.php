@@ -133,7 +133,25 @@
                         <div class="col-sm-12 col-md-12 col-lg-9">
                             <div class="container">
                                 <div class="row">
-
+                                    @if($package->image)
+                                        <div class="case-item col-sm-12 col-md-12 col-lg-4 work-item">
+                                                <div class="case-img">
+                                                    <div class="work-item-container">
+                                                        <div class="work-img"><img
+                                                                    src="{{asset('/uploads/packages/'. $package->image)}}"
+                                                                    alt="post"/>
+                                                            <div class="work-hover">
+                                                                <div class="work-action">
+                                                                    <div class="work-zoom"><a class="img-gallery-item"
+                                                                                              href="{{asset('/uploads/packages/'. $package->image)}}"
+                                                                                              title="Post"></a></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    @endif
                                     @if($package->images)
                                         @foreach(explode(',', $package->images) as $image)
                                             <div class="case-item col-sm-12 col-md-12 col-lg-4 work-item">
