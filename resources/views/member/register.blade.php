@@ -210,7 +210,7 @@
                                         <select class="form-control my_select" name="country" onchange="getCities(this.value)">
                                             <option>{{ __('website.member.Select_The_Country') }}</option>
                                             @foreach ($country as $con)
-                                                <option value="{{ $con->title_en }}" @if(old('country') == $con->title_en ) selected @endif>{{ $lang == "en" ? $con->title_en : $con->title_ar }}</option>
+                                                <option value="{{ $con->id }}" @if(old('country') == $con->id ) selected @endif>{{ $lang == "en" ? $con->title_en : $con->title_ar }}</option>
                                             @endforeach
                                         </select>
                                     </div>

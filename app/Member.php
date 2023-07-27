@@ -27,11 +27,24 @@ class Member extends Authenticatable
     {
         return $this->belongsTo('App\Country','country_id');
     }
+    public function city()
+    {
+        return $this->belongsTo(City::class,'city_id');
+    }
+    public function area()
+    {
+        return $this->belongsTo(Area::class,'area_id');
+    }
 
     public function getAddress()
     {
-        return $this->country .', ' . $this->city . ', ' . $this->area . ', block ' .
+        return $this->country->title_en .', ' . $this->city->title_en . ', ' . $this->area->title_en . ', block ' .
          $this->block . ', street ' . $this->street . ', avenue ' . $this->avenue;
+    }
+
+    public function getISOCODE()
+    {
+        return $this->country->iso_code .'-' . $this->id ;
     }
 
 

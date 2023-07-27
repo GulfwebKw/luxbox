@@ -133,7 +133,7 @@
                         <select name="country" onchange="getCities(this.value)" id=""  class="form-control" required>
                             <option value="">None</option>
                             @foreach($countries as $r)
-                                <option value="{{ $r->title_en }}" @if($r->title_en==$resource->country) selected @endif>{{ $r->title_en }}</option>
+                                <option value="{{ $r->id }}" @if($r->id==$resource->country_id) selected @endif>{{ $r->title_en }}</option>
                             @endforeach
                         </select>
                     </div>

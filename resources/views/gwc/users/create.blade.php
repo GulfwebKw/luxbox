@@ -121,7 +121,7 @@
                         <select name="country" onchange="getCities(this.value)" id=""  class="form-control" required>
                             <option value="">None</option>
                             @foreach($countries as $resource)
-                                <option value="{{ $resource->title_en }}">{{ $resource->title_en }}</option>
+                                <option value="{{ $resource->id }}">{{ $resource->title_en }}</option>
                             @endforeach
                         </select>
                     </div>

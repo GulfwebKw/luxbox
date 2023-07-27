@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\AccountType;
-use App\Address;
 use App\Area;
 use App\City;
 use App\Country;
@@ -11,7 +10,6 @@ use App\Language;
 use App\Member;
 use App\User;
 use App\Settings;
-use App\UserQuotation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -161,9 +159,9 @@ class AdminUsersController extends Controller
         $member->password = Hash::make(request('password'));
         $member->language_id = $request->input('language_id');
         $member->referral_code = $request->input('referral_code');
-        $member->country = $request->input('country');
-        $member->city = $request->input('city');
-        $member->area = $request->input('area');
+        $member->country_id = $request->input('country');
+        $member->city_id = $request->input('city');
+        $member->area_id = $request->input('area');
         $member->block = $request->input('block');
         $member->street = $request->input('street');
         $member->floor = $request->input('floor');
@@ -266,9 +264,9 @@ class AdminUsersController extends Controller
             'password' => request('password' , false) ? Hash::make(request('password')) : $resource->password ,
             'language_id' => $request->input('language_id'),
             'referral_code' => $request->input('referral_code'),
-            'country' => $request->input('country'),
-            'city' => $request->input('city'),
-            'area' => $request->input('area'),
+            'country_id' => $request->input('country'),
+            'city_id' => $request->input('city'),
+            'area_id' => $request->input('area'),
             'block' => $request->input('block'),
             'is_active' => !empty($request->input('is_active')) ? '1' : '0',
             'street' => $request->input('street'),

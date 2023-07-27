@@ -24,12 +24,12 @@ class WebController extends Controller
 
         if (! empty($request->country_id)){
             $countryId = $request->country_id;
-            $country = Country::query()->where('title_en', $countryId)->first();
+            $country = Country::query()->where('id', $countryId)->first();
             if ($country){
                 $cities = $country->cities;
                 $response = "<option value='' >Select City</option>";
                 foreach ($cities as $city){
-                    $response .= "<option value='" . $city->title_en . "'>" . $city->title_en . "</option>";
+                    $response .= "<option value='" . $city->id . "'>" . $city->title_en . "</option>";
                 }
                 return response()->json([$response]);
             }
@@ -40,16 +40,16 @@ class WebController extends Controller
     {
         if (! empty($request->country_id)){
             $countryId = $request->country_id;
-            $country = Country::query()->where('title_en', $countryId)->first();
+            $country = Country::query()->where('id', $countryId)->first();
             if ($country){
                 $cities = $country->cities;
                 $response = "<option>Select City</option>";
                 foreach ($cities as $city){
-                    if ($city->title_en==$request->id){
+                    if ($city->id==$request->id){
 
-                    $response .= "<option value='" . $city->title_en . "'>" . $city->title_en . "</option>";
+                        $response .= "<option value='" . $city->id . "' selected>" . $city->title_en . "</option>";
                     }else{
-                    $response .= "<option value='" . $city->title_en . "'>" . $city->title_en . "</option>";
+                        $response .= "<option value='" . $city->id . "'>" . $city->title_en . "</option>";
                     }
                 }
                 return response()->json([$response]);
@@ -62,12 +62,12 @@ class WebController extends Controller
 
         if (! empty($request->city_id)){
             $cityId = $request->city_id;
-            $city = City::query()->where('title_en', $cityId)->first();
+            $city = City::query()->where('id', $cityId)->first();
             if ($city){
                 $areas = $city->areas;
                 $response = "<option value='' >Select Area</option>";
                 foreach ($areas as $area){
-                    $response .= "<option  value='" . $area->title_en . "'>" . $area->title_en . "</option>";
+                    $response .= "<option  value='" . $area->id . "'>" . $area->title_en . "</option>";
                 }
                 return response()->json([$response]);
             }

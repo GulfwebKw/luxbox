@@ -49,9 +49,9 @@ class RegisterMemberController extends Controller
             'civil_id' => 'required',
             'last_name' => 'required',
             'phone' => 'required',
-            'country' => 'required',
-            'city' => 'required',
-            'area' => 'required',
+            'country' => 'required|exists:gwc_countries,id',
+            'city' => 'required|exists:gwc_areas,id',
+            'area' => 'required|exists:gwc_cities,id',
             'block' => 'required',
             'street' => 'required',
             'home_paci' => 'required',
@@ -70,9 +70,9 @@ class RegisterMemberController extends Controller
        $member->building_number = $request->input('building_number');
        $member->floor = $request->input('floor');
        $member->apartment_office_number = $request->input('apartment_office_number');
-       $member->country = $request->input('country');
-       $member->city = $request->input('city');
-       $member->area = $request->input('area');
+       $member->country_id = $request->input('country');
+       $member->city_id = $request->input('city');
+       $member->area_id = $request->input('area');
        $member->block = $request->input('block');
        $member->street = $request->input('street');
        $member->avenue = $request->input('avenue');
@@ -92,15 +92,15 @@ class RegisterMemberController extends Controller
     {
         if (! empty($request->country_id)){
             $countryId = $request->country_id;
-            $country = Country::query()->where('title_en', $countryId)->first();
+            $country = Country::query()->where('id', $countryId)->first();
             if ($country){
                 $cities = $country->cities;
                 $response = "<li class='option selected'>Select The Country</li>";
                 $options = "<option>Select The Country</option>";
 
                 foreach ($cities as $city){
-                    $response .= "<li class='option' data-value='" . $city->title_en . "'>" . $city->title_en . "</li>";
-                    $options .= "<option value='" . $city->title_en . "'>" . $city->title_en . "</option>";
+                    $response .= "<li class='option' data-value='" . $city->id . "'>" . $city->title_en . "</li>";
+                    $options .= "<option value='" . $city->id . "'>" . $city->title_en . "</option>";
                 }
                 return response()->json(['lis'=>$response, 'op'=>$options]);
             }
@@ -111,14 +111,14 @@ class RegisterMemberController extends Controller
     {
         if (! empty($request->city_id)){
             $cityId = $request->city_id;
-            $city = City::query()->where('title_en', $cityId)->first();
+            $city = City::query()->where('id', $cityId)->first();
             if ($city){
                 $areas = $city->areas;
                 $response = "<li class='option selected'>Select The City</li>";
-                $options = "<option class='option selected'>Select The City</option>";
+                $options = "<option>Select The City</option>";
                 foreach ($areas as $area){
-                    $response .= "<li class='option' data-value='" . $area->title_en . "'>" . $area->title_en . "</li>";
-                    $options .= "<option class='option' value='" . $area->title_en . "'>" . $area->title_en . "</option>";
+                    $response .= "<li class='option' data-value='" . $area->id . "'>" . $area->title_en . "</li>";
+                    $options .= "<option class='option' value='" . $area->id . "'>" . $area->title_en . "</option>";
                 }
                 return response()->json(['lis'=>$response, 'op'=>$options]);
             }
