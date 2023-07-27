@@ -193,8 +193,8 @@
                                             class="body_color">{{$package->weight . ' '. $package->weight_type}}</strong>
                                 </li>
                                 <li>Goods Value:
-                                    <strong class="body_color">{{ $package->goods_value ? '$'.$package->goods_value :""}}</strong>
-                                    @if ( $package->goods_value == null)
+                                    <strong class="body_color">{!! $package->goods_value ? '$'.$package->goods_value. ( $package->canUpdateGoodValue() ? '<button class="btn-sm btn-warning mx-1 text-light" data-toggle="modal" data-target="#good_value_'.$package->id.'"><i class="fa fa-pencil"></i></button>' : '' ) : "Unknown" !!}</strong>
+                                    @if ( $package->canUpdateGoodValue() and ! $package->goods_value )
                                         <button class="btn_blue m-1" data-toggle="modal" data-target="#good_value_{{ $package->id }}">
                                             <i class="fa fa-list-alt"></i> Enter {{ __('adminMessage.good_value') }}
                                         </button>
@@ -209,7 +209,7 @@
                             {{--						<button class="btn_blue" onclick="window.location.href='track.html'"><i class="fa fa-ship"></i> Track Order</button>--}}
 
                         </div>
-                        @if ( $package->goods_value == null)
+                        @if ( $package->canUpdateGoodValue())
                             <!-- Modal -->
                             <div class="modal fade" id="good_value_{{ $package->id }}" tabindex="-1" role="dialog" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">

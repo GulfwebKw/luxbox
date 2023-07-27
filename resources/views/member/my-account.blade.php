@@ -139,12 +139,12 @@
                                     <div class="case-img">
                                         <div class="work-item-container">
                                             <div class="work-img">
-                                                    <img src="{{asset('/uploads/packages/'. $package->image)}}" alt="{{$package->package_type}}"/>
-                                                    <div class="work-hover">
-                                                        <div class="work-action">
-                                                            <div class="work-zoom"></div>
-                                                        </div>
+                                                <img src="{{asset('/uploads/packages/'. $package->image)}}" alt="{{$package->package_type}}"/>
+                                                <div class="work-hover">
+                                                    <div class="work-action">
+                                                        <div class="work-zoom"></div>
                                                     </div>
+                                                </div>
                                                 <a href="{{route('view-order', $package->id)}}">
                                                 </a>
                                             </div>
@@ -157,16 +157,18 @@
                                                 Quantity: {{$package->boxes_count}}<br/>
                                                 Original track id: <strong
                                                         class="gray_color">{{$package->original_track_id}}</strong> <br/>
-                                                {{ __('adminMessage.good_value') }}: {{$package->goods_value ?? "Unknown"}}<br/>
+                                                {{ __('adminMessage.good_value') }}: {!! $package->goods_value ? '$'.$package->goods_value. ( $package->canUpdateGoodValue() ? '<button class="btn-sm btn-warning mx-1 text-light" data-toggle="modal" data-target="#good_value_'.$package->id.'"><i class="fa fa-pencil"></i></button>' : '' ) : "Unknown" !!}<br/>
                                             </p>
                                         </div>
                                         <div class="case-more text--center">
                                             {{--											<button class="btn_blue">View Picture</button>--}}
 
-                                            @if ( $package->goods_value == null)
-                                            <button class="btn_blue m-1" data-toggle="modal" data-target="#good_value_{{ $package->id }}">
-                                                <i class="fa fa-list-alt"></i> Enter {{ __('adminMessage.good_value') }}
-                                            </button>
+                                            @if ( $package->canUpdateGoodValue() )
+                                                @if( ! $package->goods_value )
+                                                    <button class="btn_blue m-1" data-toggle="modal" data-target="#good_value_{{ $package->id }}">
+                                                        <i class="fa fa-list-alt"></i> Enter {{ __('adminMessage.good_value') }}
+                                                    </button>
+                                                @endif
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="good_value_{{ $package->id }}" tabindex="-1" role="dialog" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
