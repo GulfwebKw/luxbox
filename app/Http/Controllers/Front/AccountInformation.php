@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Package;
 use App\PackageInvoice;
 use App\Settings;
+use App\OrderStatus;
 use App\TitleAndImage;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -14,14 +15,15 @@ use Illuminate\Support\Facades\Auth;
 
 class AccountInformation extends Controller
 {
- 
+
 
     public function index()
     {
 
         $setting = Settings::where("keyname", "setting")->first();
+        $status = OrderStatus::where("show_in_received_package", true)->get()->pluck('name');
 //        $packages = Package::doesntHave('invoice')->where(['member_id'=> Auth::id()])->get();
-        $packages = Package::query()->where(['member_id'=> Auth::id()])->where('created_at' , '>' , Carbon::now()->subMonths(6))->latest()->get();
+        $packages = Package::query()->where(['member_id'=> Auth::id()])->whereIn('order_status' , (array) $status)->latest()->get();
         return view('member.my-account',compact( 'setting', 'packages'));
     }
 
@@ -38,7 +40,8 @@ class AccountInformation extends Controller
     public function shippedPackages()
     {
         $setting = Settings::where("keyname", "setting")->first();
-        $packages = Package::with('invoice')->where('invoice_id', '!=', null)->where('member_id', Auth::id())->get();
+        $status = OrderStatus::where("show_in_shiped_package", true)->get()->pluck('name');
+        $packages = Package::with('invoice')->where(['member_id'=> Auth::id()])->whereIn('order_status' , (array) $status)->latest()->get();
         return view('member.shipped-packages',compact('packages', 'setting'));
     }
 
