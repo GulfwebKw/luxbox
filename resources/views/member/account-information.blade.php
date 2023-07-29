@@ -98,7 +98,7 @@
 											<h6>MY US SHIPPING ADDRESS</h6>
 										</div>
 										<ul class="list-unstyled info">
-											<li><span class="fas fa-map-marker-alt"></span><a href="javascript:void(0)">{{getSetting('setting')['address_'.$lang]}}</a></li>
+											<li><span class="fas fa-map-marker-alt"></span><a href="javascript:void(0)">{{getSetting('setting')['address_'.$lang]}}, {{ $user->getISOCODE() }}</a></li>
 											<li><span class="fas fa-phone-alt"></span><a href="tel:	+965-221-23456">{{getSetting('setting')->phone}}</a></li>
 										</ul>
 									</div>

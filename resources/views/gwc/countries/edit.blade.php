@@ -10,7 +10,7 @@
             <!-- title -->
             <div class="form-group">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         @component('gwc.components.editTextInput', [
                             'label' => 'Title (en)',
                             'name' => 'title_en',
@@ -18,11 +18,19 @@
                             'required' => true
                         ]) @endcomponent
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         @component('gwc.components.editTextInput', [
                             'label' => 'Title (ar)',
                             'name' => 'title_ar',
                             'value' => $resource->title_ar,
+                            'required' => true
+                        ]) @endcomponent
+                    </div>
+                    <div class="col-md-2">
+                        @component('gwc.components.editTextInput', [
+                            'label' => 'ISO Code',
+                            'name' => 'iso_code',
+                            'value' => $resource->iso_code,
                             'required' => true
                         ]) @endcomponent
                     </div>

@@ -59,10 +59,23 @@ class PackageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $orderStatus = OrderStatus::where('is_active', 1)->get();
-        $resources = $this->model::with('member')->paginate($this->settings->item_per_page_back);
+        $resources = $this->model::with('member')->when($request->query('q') , function ($query) use($request) {
+            $query_search = explode('-', $request->query('q'));
+            if ( count($query_search) == 2 and intval($query_search[1]) == $query_search[1] )
+                $query->where('member_id' , $query_search[1]);
+            elseif ( count($query_search) == 1 and substr($query_search[0] , 0 , 1) == "#" )
+                $query->where('order' ,  substr($query_search[0] , 1));
+            else
+                $query->where(function ($builder) use($request) {
+                    $builder->where('order_status' , 'like' , '%'.$request->query('q').'%')
+                        ->orWhere('original_track_id' , 'like' , '%'.$request->query('q').'%')
+                        ->orWhere('shipping_method' , 'like' , '%'.$request->query('q').'%')
+                        ->orWhere('package_type' , 'like' , '%'.$request->query('q').'%');
+                });
+        })->latest()->paginate($this->settings->item_per_page_back);
         return view('gwc.' . $this->data['path'] . '.index', [
             'data' => $this->data,
             'settings' => $this->settings,

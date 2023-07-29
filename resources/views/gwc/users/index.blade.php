@@ -19,7 +19,7 @@
             @foreach($resources as $resource)
                 <tr class="search-body @if($resource->is_approved == "pending" ) bg-warning @elseif($resource->is_approved == "reject" ) bg-danger @endif">
                     <td>
-                        {{$p}}
+                        {{ $resource->getISOCODE()  }}
                     </td>
                 
                     <td>

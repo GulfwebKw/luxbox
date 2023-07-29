@@ -44,7 +44,7 @@ class Member extends Authenticatable
 
     public function getISOCODE()
     {
-        return $this->country->iso_code .'-' . $this->id ;
+        return strtoupper(optional($this->country)->iso_code) .'-' . $this->id ;
     }
 
 

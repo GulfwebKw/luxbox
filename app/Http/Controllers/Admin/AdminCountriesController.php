@@ -112,6 +112,7 @@ class AdminCountriesController extends Controller
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'title_en' => 'required|string',
             'title_ar' => 'required|string',
+            'iso_code' => 'required|string',
         ]);
 
         //upload image
@@ -120,6 +121,7 @@ class AdminCountriesController extends Controller
         $resource = new Country();
         $resource->title_en = $request->input('title_en');
         $resource->title_ar = $request->input('title_ar');
+        $resource->iso_code = $request->input('iso_code');
         $resource->image = $image;
         $resource->is_active = !empty($request->input('is_active')) ? '1' : '0';
         $resource->save();
@@ -174,6 +176,7 @@ class AdminCountriesController extends Controller
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'title_en' => 'required|string',
             'title_ar' => 'required|string',
+            'iso_code' => 'required|string',
         ]);
 
         $resource = $this->model::find($id);
@@ -182,6 +185,7 @@ class AdminCountriesController extends Controller
 
         $resource->title_en = $request->input('title_en');
         $resource->title_ar = $request->input('title_ar');
+        $resource->iso_code = $request->input('iso_code');
         $resource->image = $image;
         $resource->is_active = !empty($request->input('is_active')) ? '1' : '0';
         $resource->save();

@@ -7,6 +7,7 @@
             <th width="10">#</th>
             <th>{{__('adminMessage.title_en')}}</th>
             <th>{{__('adminMessage.title_ar')}}</th>
+            <th>ISO Code</th>
             <th width="100">{{__('adminMessage.image')}}</th>
             <th width="10">{{__('adminMessage.status')}}</th>
             <th width="100">{{__('adminMessage.createdat')}}</th>
@@ -26,6 +27,9 @@
                     </td>
                     <td>
                         {!! $resource->title_ar !!}
+                    </td>
+                    <td>
+                        {!! strtoupper($resource->iso_code) !!}
                     </td>
                     <td>
                         @if($resource->image)

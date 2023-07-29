@@ -26,7 +26,8 @@
                         {{$p}}
                     </td>
                     <td>
-                        {!! $resource['member'] ? $resource['member']->fullname : "Member deleted!" !!}
+                        {!! $resource['member'] ? $resource['member']->fullname : "Member deleted!"  !!}
+                        {!! $resource['member'] ? '<br>'.$resource['member']->getISOCODE() : ""  !!}
                     </td>
                     <td>
                         {!! '#' .$resource->order !!}

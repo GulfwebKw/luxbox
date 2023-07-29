@@ -64,12 +64,18 @@ class AdminUsersController extends Controller
     public function index(Request $request)
     {
         $resources = Member::query()->latest()->when($request->query('q') , function ($query) use($request) {
-            $query->where(function ($builder) use($request) {
-               $builder->where('civil_id' , 'like' , '%'.$request->query('q').'%')
-                    ->orWhere('first_name' , 'like' , '%'.$request->query('q').'%')
-                    ->orWhere('last_name' , 'like' , '%'.$request->query('q').'%')
-                    ->orWhere('last_name' , 'like' , '%'.$request->query('q').'%');
-            });
+            $query_search = explode('-', $request->query('q'));
+            if ( count($query_search) == 2 and intval($query_search[1]) == $query_search[1] )
+                $query->where('id' , $query_search[1]);
+            else
+                $query->where(function ($builder) use($request) {
+                   $builder->where('civil_id' , 'like' , '%'.$request->query('q').'%')
+                        ->orWhere('first_name' , 'like' , '%'.$request->query('q').'%')
+                        ->orWhere('last_name' , 'like' , '%'.$request->query('q').'%')
+                        ->orWhere('email' , 'like' , '%'.$request->query('q').'%')
+                        ->orWhere('phone' , 'like' , '%'.$request->query('q').'%')
+                        ->orWhere('mobile' , 'like' , '%'.$request->query('q').'%');
+                });
         })->paginate($this->settings->item_per_page_back);
         return view('gwc.' . $this->data['path'] . '.index', [
             'data' => $this->data,
@@ -87,12 +93,18 @@ class AdminUsersController extends Controller
         if ( Auth()->guard('admin')->user()->can('users-approved') ) {
             $resources = Member::query()->where('is_approved', 'pending')
                 ->latest()->when($request->query('q') , function ($query) use($request) {
-                    $query->where(function ($builder) use($request) {
-                        $builder->where('civil_id' , 'like' , '%'.$request->query('q').'%')
-                            ->orWhere('first_name' , 'like' , '%'.$request->query('q').'%')
-                            ->orWhere('last_name' , 'like' , '%'.$request->query('q').'%')
-                            ->orWhere('last_name' , 'like' , '%'.$request->query('q').'%');
-                    });
+                    $query_search = explode('-', $request->query('q'));
+                    if ( count($query_search) == 2 and intval($query_search[1]) == $query_search[1] )
+                        $query->where('id' , $query_search[1]);
+                    else
+                        $query->where(function ($builder) use($request) {
+                            $builder->where('civil_id' , 'like' , '%'.$request->query('q').'%')
+                                ->orWhere('first_name' , 'like' , '%'.$request->query('q').'%')
+                                ->orWhere('last_name' , 'like' , '%'.$request->query('q').'%')
+                                ->orWhere('email' , 'like' , '%'.$request->query('q').'%')
+                                ->orWhere('phone' , 'like' , '%'.$request->query('q').'%')
+                                ->orWhere('mobile' , 'like' , '%'.$request->query('q').'%');
+                        });
                 })->paginate($this->settings->item_per_page_back);
             return view('gwc.' . $this->data['path'] . '.pendingIndex', [
                 'data' => $this->data,

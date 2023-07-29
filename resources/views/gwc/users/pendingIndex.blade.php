@@ -18,7 +18,7 @@
             @foreach($resources as $resource)
                 <tr class="search-body">
                     <td>
-                        {{$p}}
+                        {{ $resource->getISOCODE()  }}
                     </td>
                 
                     <td>
