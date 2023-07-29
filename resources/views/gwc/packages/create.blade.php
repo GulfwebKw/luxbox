@@ -36,13 +36,10 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-4">
-                        @component('gwc.components.createSelectBox', [
-                            'label' => 'User',
-                            'title' => 'fullnamee',
-                            'name' => 'member_id',
-                            'resources' => $members,
-                            'required' => true
-                        ]) @endcomponent
+                        <label>User</label>
+                        <select id="select2-dropdown" name="member_id" class="form-control" required>
+                            <option value="">None</option>
+                        </select>
                     </div>
                     <div class="col-md-2">
                         @component('gwc.components.createTextInput', [
@@ -170,7 +167,26 @@
 @endsection
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script type="text/javascript">
+        $(document).ready(function() {
+            $('#select2-dropdown').select2({
+                ajax: {
+                    url: '{{ route('ajax-get-user-isocode') }}',
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function(data) {
+                        return {
+                            results: data
+                        };
+                    },
+                    cache: true
+                },
+                placeholder: 'Select an option',
+                minimumInputLength: 1
+            });
+        });
         var uploadedDocumentMap = {}
         Dropzone.prototype.defaultOptions.dictDefaultMessage = "Drop more image (Inside box) here to upload";
         Dropzone.options.documentDropzone = {

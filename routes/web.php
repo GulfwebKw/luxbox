@@ -255,6 +255,7 @@ Route::post('/dropzone/image/remove', 'DropzoneController@store')->name('dropzon
 Route::post('/gwc/get-country-cities', "WebController@getCountryCities");
 Route::post('/gwc/get-country-cities-edit', "WebController@getCountryCitiesEdit");
 Route::post('/gwc/get-city-areas', "WebController@getAreas");
+Route::get('/gwc/get-user', "WebController@getUser")->name('ajax-get-user-isocode');
 
 
 //////////////////////////////////////////////////WEBSITE//////////////////////////////////////////////////

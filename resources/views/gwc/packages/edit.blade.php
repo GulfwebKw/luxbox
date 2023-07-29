@@ -39,14 +39,12 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-4">
-                        @component('gwc.components.editSelectBox', [
-                            'label' => 'User',
-                            'title' => 'fullnamee',
-                            'name' => 'member_id',
-                            'resources' => $members,
-                            'foreign_key' => $resource->member_id,
-                            'required' => true
-                        ]) @endcomponent
+                        <div class="col-md-4">
+                            <label>User</label>
+                            <select id="select2-dropdown" name="member_id" class="form-control" required>
+                                <option value="{{$resource->member_id}}" selected="selected">{{$resource->member ? $resource->member->fullnamee : "Member deleted!"}}</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="col-md-2">
                         @component('gwc.components.editTextInput', [
@@ -202,7 +200,26 @@
 
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script type="text/javascript">
+        $(document).ready(function() {
+            $('#select2-dropdown').select2({
+                ajax: {
+                    url: '{{ route('ajax-get-user-isocode') }}',
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function(data) {
+                        return {
+                            results: data
+                        };
+                    },
+                    cache: true
+                },
+                placeholder: 'Select an option',
+                minimumInputLength: 1
+            });
+        });
         var uploadedDocumentMap = {}
         Dropzone.prototype.defaultOptions.dictDefaultMessage = "Drop more image (Inside box) here to upload";
         Dropzone.options.documentDropzone = {

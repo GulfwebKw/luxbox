@@ -92,7 +92,6 @@ class PackageController extends Controller
      */
     public function create()
     {
-        $members = Member::where('is_active', 1)->get();
         $packagesTypes = PackageType::where('is_active', 1)->get();
         $shippingMethod = ShippingMethod::where('is_active', 1)->get();
         $orderStatus = OrderStatus::where('is_active', 1)->get();
@@ -102,7 +101,6 @@ class PackageController extends Controller
             'packagesTypes' => $packagesTypes,
             'shippingMethod' => $shippingMethod,
             'orderStatus' => $orderStatus,
-            'members' => $members,
         ]);
     }
 
@@ -157,7 +155,6 @@ class PackageController extends Controller
     {
         $package = $this->model::find($id);
 
-        $members = Member::where('is_active', 1)->get();
         $packagesTypes = PackageType::where('is_active', 1)->get();
         $shippingMethod = ShippingMethod::where('is_active', 1)->get();
         $orderStatus = OrderStatus::where('is_active', 1)->get();
@@ -165,7 +162,6 @@ class PackageController extends Controller
             'data' => $this->data,
             'settings' => $this->settings,
             'resource' => $package,
-            'members' => $members,
             'packagesTypes' => $packagesTypes,
             'shippingMethod' => $shippingMethod,
             'orderStatus' => $orderStatus,
