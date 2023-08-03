@@ -70,16 +70,16 @@
 </section>
 
 <section class="testimonial testimonial-3 bg-overlay bg-overlay-theme">
-<div class="bg-section"> <img src="assets/images/background/1.jpg" alt="background-img" /></div>
+<div class="bg-section"> <img src="{{ asset('assets/images/background/1.jpg') }}" alt="background-img" /></div>
 <div class="container">
 <div class="row">
-<div class="col-12 col-lg-4 offset-lg-4">
+<div class="col-12 col-lg-4 offset-lg-4 @if(app()->getLocale() == "ar") mr-auto @endif">
 <div class="accordion accordion-4">
 	<form action="{{route('login.member')}}" method="post">
 		@csrf
-	<div class="col-12 col-lg-12"><label>{{ __('website.member.Email_Address') }}</label><input class="form-control" name="email" type="email"  placeholder="{{ __('website.member.Email_Address') }}" autocomplete="email" autofocus required /></div>
+	<div class="col-12 col-lg-12"><label>{{ __('website.member.Email_Address') }}</label><input class="form-control" name="email" type="email" dir="ltr"  placeholder="{{ __('website.member.Email_Address') }}" autocomplete="email" autofocus required /></div>
 
-	<div class="col-12 col-lg-12"><label>{{ __('website.member.Password') }}</label><input class="form-control" name="password" required autocomplete="current-password" placeholder="{{ __('website.member.Password') }}" type="password" /></div>
+	<div class="col-12 col-lg-12"><label>{{ __('website.member.Password') }}</label><input class="form-control" name="password" required dir="ltr" autocomplete="current-password" placeholder="{{ __('website.member.Password') }}" type="password" /></div>
 
 		<div class="col-12 col-lg-12"><a href="{{url('forget-password')}}">{{ __('website.member.Forget_Password') }}</a></div>
 	<div>&nbsp;</div>

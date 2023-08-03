@@ -42,7 +42,7 @@ class ForgotPasswordController extends Controller
             $message->to($request->email);
             $message->subject('Reset Password');
         });
-        $toast=Toastr::success('We have e-mailed your password reset link!');
+        $toast=Toastr::success(__('webMessage.password_reset_link_sent'));
         return back()->with($toast);
     }
     public function showResetPasswordForm($token) {
@@ -64,7 +64,7 @@ class ForgotPasswordController extends Controller
             ->first();
 
         if(!$updatePassword){
-            $toast=Toastr::error('Invalid token!');
+            $toast=Toastr::error(__('webMessage.email_not_register_or_token'));
             return back()->withInput()->with($toast);
         }
 
@@ -72,7 +72,7 @@ class ForgotPasswordController extends Controller
             ->update(['password' => Hash::make($request->password)]);
 
         DB::table('forgot_password')->where(['email'=> $request->email])->delete();
-        $toast=Toastr::success('Your password has been changed!');
+        $toast=Toastr::success(__('website.member.password_update'));
         return redirect('/login')->with($toast);
     }
 }

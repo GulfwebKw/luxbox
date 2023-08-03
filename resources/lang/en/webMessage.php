@@ -16,7 +16,7 @@ return [
 	'oalign'                =>'right',
 	'dir'                   =>'ltr',
 	/*Dont edit end*/ 
-	'copyrights'            =>'Copyright &copy; '.date('Y').' Al Rayah Delivery Co.  All Rights Reserved.',
+	'copyrights'            =>'Copyright &copy; '.date('Y').' :name, All Rights Reserved.',
 	'copyright1'            =>'Copyright &copy; ' . date('Y') . ' ',
 	'copyright2'            =>' All Rights Reserved.',
 	'english'               =>'English',

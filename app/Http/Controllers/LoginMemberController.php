@@ -46,10 +46,11 @@ class LoginMemberController extends Controller
         $request->validate($rules,$messages);
     }
     private function loginFailed(){
+        $toast=Toastr::error(__('website.member.emailOrPasswordIsIncorrect'));
         return redirect()
             ->back()
             ->withInput()
-            ->with('error','Login failed, please try again!');
+            ->with($toast);
     }
 
 
@@ -74,7 +75,7 @@ class LoginMemberController extends Controller
             //Authentication passed...
             $toast=Toastr::success(__('website.content.Send_Successful'));
 
-            return redirect('/')->with($toast);
+            return redirect($this->redirectTo)->with($toast);
 
         }
 

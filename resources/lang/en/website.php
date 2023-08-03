@@ -125,6 +125,7 @@ return [
         'Snapchat' => 'Snapchat',
         'TikTok' => 'TikTok',
         'Home_PACI' => 'Home PACI',
+        'password_update' => 'Your password has been changed!',
     ],
     'notApproved' => 'your account not Approved',
 ];

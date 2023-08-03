@@ -51,7 +51,7 @@
     </header>
 
     <section class="page-title bg-overlay bg-overlay-dark bg-parallax" id="page-title">
-        <div class="bg-section"><img src="assets/images/page-titles/3.jpg" alt="Background" /></div>
+        <div class="bg-section"><img src="{{ asset('assets/images/page-titles/3.jpg') }}" alt="Background" /></div>
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-6">
@@ -71,14 +71,14 @@
     </section>
 
     <section class="testimonial testimonial-3 bg-overlay bg-overlay-theme">
-        <div class="bg-section"> <img src="assets/images/background/1.jpg" alt="background-img" /></div>
+        <div class="bg-section"> <img src="{{ asset('assets/images/background/1.jpg') }}" alt="background-img" /></div>
         <div class="container">
             <div class="row">
-                <div class="col-12 col-lg-4 offset-lg-4">
+                <div class="col-12 col-lg-4 offset-lg-4  @if(app()->getLocale() == "ar") mr-auto @endif">
                     <div class="accordion accordion-4">
                         <form action="{{ route('forget.password.post') }}" method="post">
                        @csrf
-                        <div class="col-12 col-lg-12"><label>{{ __('website.member.Email_Address') }}</label><input class="form-control" type="email" name="email" placeholder="{{ __('website.member.Email_Address') }}" required /></div>
+                        <div class="col-12 col-lg-12"><label>{{ __('website.member.Email_Address') }}</label><input class="form-control" dir="ltr" type="email" name="email" placeholder="{{ __('website.member.Email_Address') }}" required /></div>
                         <div>&nbsp;</div>
                         <div class="col-12 col-lg-12"><input class="btn btn--primary offset-lg-2" type="submit" value="{{ __('website.member.Reset_Password') }}" /></div>
                         <div>&nbsp;</div>

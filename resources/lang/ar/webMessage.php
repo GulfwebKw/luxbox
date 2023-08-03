@@ -16,7 +16,7 @@ return [
 	'oalign'                =>'left',
 	'dir'                   =>'rtl',
 	/*Dont edit end*/
-	'copyrights'            =>'حقوق النشر &copy; '.date('Y').' Al Rayah Delivery Co. جميع الحقوق محفوظة.',
+	'copyrights'            =>'حقوق النشر &copy; '.date('Y').' :name, جميع الحقوق محفوظة.',
 	'english'               =>'English',
 	'arabic'                =>'العربية',
 	'home'                  =>'الرئيسية', 

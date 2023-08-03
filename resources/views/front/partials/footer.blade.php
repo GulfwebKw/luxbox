@@ -78,7 +78,7 @@
     <div class="footer-bottom">
         <div class="row">
             <div class="col-md-12 col-md-12 text--center footer-copyright">
-                <div class="copyright"><span>&copy; Copyright {{ date('Y')  }}, All Rights Reserved, </span><a href="/">{{getSetting('setting')['name_en']}}</a></div>
+                <div class="copyright"><span>{!! __('webMessage.copyrights' , ['name' => getSetting('setting')['name_'.$lang]]) !!}</span></div>
             </div>
         </div>
 
