@@ -56,13 +56,13 @@
 <div class="col-sm-12 col-md-12 col-lg-6">
 <div class="title text-lg-left">
 <div class="title-heading">
-<h1>{{ __('website.member.MyAccount') }}</h1>
+<h1>{{ __('website.member.AccountInformation') }}</h1>
 </div>
 <div class="clearfix"></div>
 <ol class="breadcrumb justify-content-lg-start">
 <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('website.menu.Home') }}</a></li>
 <li class="breadcrumb-item">{{ __('website.member.MyAccount') }}</li>
-<li class="breadcrumb-item active" aria-current="page">{{ __('website.member.ReceivedPackages') }}</li>
+<li class="breadcrumb-item active" aria-current="page">{{ __('website.member.AccountInformation') }}</li>
 </ol>
 </div>
 </div>
@@ -87,7 +87,7 @@
 			<div class="container">
 				<div class="row">
 
-					<div class="col-12 col-lg-12"><h5 class="heading-title">ACCOUNT INFO</h5></div>
+					<div class="col-12 col-lg-12"><h5 class="heading-title">{{ __('website.member.AccountInformation') }}</h5></div>
 
 					<div class="col-12 col-lg-12 mt-50">
 						<div class="locations" id="locations">
@@ -95,11 +95,11 @@
 								<div class="col-12 col-lg-6">
 									<div class="address">
 										<div class="office">
-											<h6>MY US SHIPPING ADDRESS</h6>
+											<h6>{{ __('website.member.MY_US_SHIPPING_ADDRESS') }}</h6>
 										</div>
 										<ul class="list-unstyled info">
-											<li><span class="fas fa-map-marker-alt"></span><a href="javascript:void(0)">{{getSetting('setting')['address_'.$lang]}}, {{ $user->getISOCODE() }}</a></li>
-											<li><span class="fas fa-phone-alt"></span><a href="tel:	+965-221-23456">{{getSetting('setting')->phone}}</a></li>
+											<li><span class="fas fa-map-marker-alt"></span><a href="javascript:void(0)"> {{getSetting('setting')['address_'.$lang]}}, {{ $user->getISOCODE() }}</a></li>
+											<li><span class="fas fa-phone-alt"></span><a href="tel:{{getSetting('setting')->phone}}"> {{getSetting('setting')->phone}}</a></li>
 										</ul>
 									</div>
 								</div>
@@ -107,13 +107,13 @@
 								<div class="col-12 col-lg-6">
 									<div class="address">
 										<div class="office">
-											<h6>MY ADDRESS <small>(Main Address)</small></h6>
+											<h6>{{ __('website.member.MyAddress') }} <small>({{ __('website.member.mainAddress') }})</small></h6>
 										</div>
 										<ul class="list-unstyled info">
 											<li><strong>{{$user->fullname}}</strong></li>
-											<li><span class="fas fa-map-marker-alt"></span><a href="javascript:void(0)">{{$user->getAddress()}}</a></li>
-											<li><span class="fas fa-envelope"></span><a href=""><span>{{$user->email}}</span></a></li>
-											<li><span class="fas fa-phone-alt"></span><a href="tel:+965-221-23456">{{$user->phone | $user->mobile}}</a></li>
+											<li><span class="fas fa-map-marker-alt"></span><a href="#"> {{$user->getAddress()}}</a></li>
+											<li><span class="fas fa-envelope"></span><a href="#"><span> {{$user->email}}</span></a></li>
+											<li><span class="fas fa-phone-alt"></span><a href="#"> {{$user->phone | $user->mobile}}</a></li>
 										</ul>
 									</div>
 								</div>

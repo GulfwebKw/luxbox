@@ -89,15 +89,16 @@
                     <div class="col-sm-12 col-md-12 col-lg-6">
                         <div class="title text-lg-left">
                             <div class="title-heading">
-                                <h1>{{ __('website.member.MyAccount') }}</h1>
+                                <h1>{{ __('website.shipping.Pay_Invoice') }}</h1>
                             </div>
                             <div class="clearfix"></div>
                             <ol class="breadcrumb justify-content-lg-start">
                                 <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('website.menu.Home') }}</a>
                                 </li>
                                 <li class="breadcrumb-item">{{ __('website.member.MyAccount') }}</li>
+                                <li class="breadcrumb-item"><a href="{{route('invoices')}}">{{ __('website.member.Invoices') }}</a></li>
                                 <li class="breadcrumb-item active"
-                                    aria-current="page">{{ __('website.member.ReceivedPackages') }}</li>
+                                    aria-current="page">{{ __('website.shipping.Pay_Invoice') }}</li>
                             </ol>
                         </div>
                     </div>
@@ -133,43 +134,41 @@
                     <div class="row justify-content-center">
                         <div class="col-md-4">
                             <div class="card">
-                                <div class="card-header">{{ __('Package Details') }}</div>
+                                <div class="card-header">{{ __('website.shipping.Package_Details') }}</div>
 
                                 <div class="card-body">
                                     <ul class="my_list">
-                                        <li>Order: <strong class="body_color">#{{$package->order}}</strong></li>
-                                        <li>Order Created: <strong
+                                        <li>{{ __('website.shipping.ORDER') }}: <strong class="body_color">#{{$package->order}}</strong></li>
+                                        <li>{{ __('website.shipping.ORDER_CREATED') }}: <strong
                                                     class="body_color">{{$package->created_at->format('y-m-d')}}</strong></li>
-                                        <li>Order Total: <strong
+                                        <li>{{ __('website.shipping.ORDER_TOTAL') }}: <strong
                                                     class="body_color">{{'$'.$package['invoice']->shipping_cost}}</strong></li>
-                                        <li>Number of Packages: <strong class="body_color">{{$package->boxes_count}}</strong>
+                                        <li>{{ __('website.shipping.OF_PACKAGES') }}: <strong class="body_color">{{$package->boxes_count}}</strong>
                                         </li>
-                                        <li>Order Status: <strong class="body_color">{{$package->order_status}}</strong></li>
-                                        <li>Order Weight: <strong
+                                        <li>{{ __('website.shipping.Order_Status') }}: <strong class="body_color">{{$package->order_status}}</strong></li>
+                                        <li>{{ __('website.shipping.Order_Weight') }}: <strong
                                                     class="body_color">{{$package->weight . ' '. $package->weight_type}}</strong>
                                         </li>
-                                        <li>Goods Value: <strong class="body_color">{{$package->goods_value ? '$'.$package->goods_value : "Unknown"}}</strong></li>
-                                        <li>Shipping Method: <strong class="body_color">{{$package->shipping_method}}</strong>
+                                        <li>{{ __('website.member.goods_value') }}: <strong class="body_color">{{$package->goods_value ? '$'.$package->goods_value : "Unknown"}}</strong></li>
+                                        <li>{{ __('website.shipping.Shipping_Method') }}: <strong class="body_color">{{$package->shipping_method}}</strong>
                                         </li>
-                                        <li>Number Of Consolidated Boxes: <strong
-                                                    class="body_color">{{$package->boxes_count}}</strong></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-8">
                             <div class="card">
-                                <div class="card-header">{{ __('Pay Invoice') }}</div>
+                                <div class="card-header">{{ __('website.shipping.Pay_Invoice') }}</div>
 
                                 <div class="card-body">
                                     <form method="POST" action="{{ route('pay-invoice') }}">
                                         <input type="hidden" value="{{ request()->get('id') }}" name="id"  >
                                         @csrf
                                         <div class="form-group row">
-                                            <label for="card_number" class="col-md-4 col-form-label text-md-right">{{ __('Card Number') }}</label>
+                                            <label for="card_number" class="col-md-4 col-form-label text-md-right">{{ __('website.shipping.Card_Number') }}</label>
 
                                             <div class="col-md-6">
-                                                <input id="card_number" type="text" class="form-control @error('card_number') is-invalid @enderror" name="card_number" required autocomplete="card_number" autofocus>
+                                                <input id="card_number" type="text" class="form-control @error('card_number') is-invalid @enderror" dir="ltr" name="card_number" required autocomplete="card_number" autofocus>
 
                                                 @error('card_number')
                                                 <span class="invalid-feedback" role="alert">
@@ -180,11 +179,11 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="expiry_date" class="col-md-4 col-form-label text-md-right">{{ __('Expiry Date') }}</label>
+                                            <label for="expiry_date" class="col-md-4 col-form-label text-md-right">{{ __('website.shipping.Expiry_Date') }}</label>
 
 
                                             <div class="col-md-3">
-                                                <input type="text" class="form-control @error('expiry_date_month') is-invalid @enderror" name="expiry_date_month" placeholder="{{ __('Month') }}" required autocomplete="expiry_date_month">
+                                                <input type="text" class="form-control @error('expiry_date_month') is-invalid @enderror" name="expiry_date_month" dir="ltr" placeholder="{{ __('website.shipping.Month') }}" required autocomplete="expiry_date_month">
 
                                                 @error('expiry_date_month')
                                                 <span class="invalid-feedback" role="alert">
@@ -193,7 +192,7 @@
                                                 @enderror
                                             </div>
                                             <div class="col-md-3">
-                                                <input type="text" class="form-control @error('expiry_date_year') is-invalid @enderror" name="expiry_date_year" placeholder="{{ __('Year') }}" required autocomplete="expiry_date_year">
+                                                <input type="text" class="form-control @error('expiry_date_year') is-invalid @enderror" name="expiry_date_year" dir="ltr" placeholder="{{ __('website.shipping.Year') }}" required autocomplete="expiry_date_year">
 
                                                 @error('expiry_date_year')
                                                 <span class="invalid-feedback" role="alert">
@@ -207,7 +206,7 @@
                                             <label for="cvv" class="col-md-4 col-form-label text-md-right">{{ __('CVV') }}</label>
 
                                             <div class="col-md-6">
-                                                <input id="cvv" type="text" class="form-control @error('cvv') is-invalid @enderror" name="cvv" required autocomplete="cvv">
+                                                <input id="cvv" type="text" class="form-control @error('cvv') is-invalid @enderror" name="cvv" required dir="ltr" autocomplete="cvv">
 
                                                 @error('cvv')
                                                 <span class="invalid-feedback" role="alert">
@@ -220,8 +219,8 @@
                                         <div class="form-group row mb-0">
                                             <div class="col-md-6 offset-md-4">
                                                 <button type="submit" class="btn btn-primary">
-                                                    {{ __('Pay') }} <strong
-                                                            class="font-18">{{'$'.number_format($package['invoice']->shipping_cost)}}</strong> {{ __('Now') }}
+                                                    {{ __('website.shipping.Pay') }} <strong
+                                                            class="font-18">{{'$'.number_format($package['invoice']->shipping_cost)}}</strong> {{ __('website.shipping.Now') }}
                                                 </button>
                                             </div>
                                         </div>

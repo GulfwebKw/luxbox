@@ -89,13 +89,15 @@
                     <div class="col-sm-12 col-md-12 col-lg-6">
                         <div class="title text-lg-left">
                             <div class="title-heading">
-                                <h1>Shipped Packages</h1>
+                                <h1>{{ __('website.shipping.View_Order') }} #{{$package->order}}</h1>
                             </div>
                             <div class="clearfix"></div>
                             <ol class="breadcrumb justify-content-lg-start">
-                                <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                                <li class="breadcrumb-item"><a href="{{ url('/my-account') }}">My Account</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Shipped Packages</li>
+                                <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('website.menu.Home') }}</a>
+                                </li>
+                                <li class="breadcrumb-item">{{ __('website.member.MyAccount') }}</li>
+                                <li class="breadcrumb-item active"
+                                    aria-current="page">{{ __('website.shipping.View_Order') }} #{{$package->order}}</li>
                             </ol>
                         </div>
                     </div>
@@ -179,30 +181,30 @@
 
                         <div class="col-sm-12 col-md-12 col-lg-3">
                             <ul class="my_list">
-                                <li>Order: <strong class="body_color">#{{$package->order}}</strong></li>
-                                <li>Order Created: <strong
+                                <li>{{ __('website.shipping.ORDER') }}: <strong class="body_color">#{{$package->order}}</strong></li>
+                                <li>{{ __('website.shipping.ORDER_CREATED') }}: <strong
                                             class="body_color">{{$package->created_at->format('y-m-d')}}</strong></li>
                                 @if( $package['invoice'] != null)
-                                <li>Order Total: <strong
+                                <li>{{ __('website.shipping.ORDER_TOTAL') }}: <strong
                                             class="body_color">{{'$'.$package['invoice']->shipping_cost}}</strong></li>
                                 @endif
-                                <li>Number of Packages: <strong class="body_color">{{$package->boxes_count}}</strong>
+                                <li>{{ __('website.shipping.OF_PACKAGES') }}: <strong class="body_color">{{$package->boxes_count}}</strong>
                                 </li>
-                                <li>Order Status: <strong class="body_color">{{$package->order_status}}</strong></li>
-                                <li>Order Weight: <strong
+                                <li>{{ __('website.shipping.Order_Status') }}: <strong class="body_color">{{$package->order_status}}</strong></li>
+                                <li>{{ __('website.shipping.Order_Weight') }}: <strong
                                             class="body_color">{{$package->weight . ' '. $package->weight_type}}</strong>
                                 </li>
-                                <li>Goods Value:
+                                <li>{{ __('website.member.goods_value') }}:
                                     <strong class="body_color">{!! $package->goods_value ? '$'.$package->goods_value. ( $package->canUpdateGoodValue() ? '<button class="btn-sm btn-warning mx-1 text-light" data-toggle="modal" data-target="#good_value_'.$package->id.'"><i class="fa fa-pencil"></i></button>' : '' ) : "Unknown" !!}</strong>
                                     @if ( $package->canUpdateGoodValue() and ! $package->goods_value )
                                         <button class="btn_blue m-1" data-toggle="modal" data-target="#good_value_{{ $package->id }}">
-                                            <i class="fa fa-list-alt"></i> Enter {{ __('adminMessage.good_value') }}
+                                            <i class="fa fa-list-alt"></i> {{ __('website.Enter') }} {{ __('website.member.goods_value') }}
                                         </button>
                                     @endif
                                 </li>
-                                <li>Shipping Method: <strong class="body_color">{{$package->shipping_method}}</strong>
+                                <li>{{ __('website.shipping.Shipping_Method') }}: <strong class="body_color">{{$package->shipping_method}}</strong>
                                 </li>
-                                <li>Number Of Consolidated Boxes: <strong
+                                <li>{{ __('website.shipping.Number_Of_Consolidated_Boxes') }}: <strong
                                             class="body_color">{{$package->boxes_count}}</strong></li>
                             </ul>
 
@@ -215,18 +217,26 @@
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalCenterTitle">{{ __('adminMessage.good_value') }}</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <h5 class="modal-title"
+                                                id="exampleModalCenterTitle">{{ __('website.member.goods_value') }}</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close"
+                                                    @if(app()->getLocale() == "ar") style="margin: -1rem -1rem -1rem -1rem;" @endif>
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="{{ route('updateGoodsValue' , $package) }}" method="POST">
+                                            <form action="{{ route('updateGoodsValue' , $package) }}"
+                                                  method="POST">
                                                 @csrf
-                                                <label>Enter {{ __('adminMessage.good_value') }} (USD $)</label>
-                                                <input class="form-control" name="good_value" required placeholder="USD $" type="number" />
+                                                <label>{{ __('website.Enter') }} {{ __('website.member.goods_value') }}
+                                                    (USD $)</label>
+                                                <input class="form-control" name="good_value"
+                                                       dir="ltr" required placeholder="USD $"
+                                                       type="number"/>
 
-                                                <input class="btn btn--primary" type="submit" value="{{ __('webMessage.sendnow') }}"/>
+                                                <input class="btn btn--primary" type="submit"
+                                                       value="{{ __('webMessage.sendnow') }}"/>
 
                                             </form>
                                         </div>
