@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use phpDocumentor\Reflection\Types\Self_;
 
 class Package extends Model
 {
@@ -25,7 +24,7 @@ class Package extends Model
         if ( self::$goodValueUpdateStatus == []){
             self::$goodValueUpdateStatus = OrderStatus::where("can_edit_good_value", true)->get()->pluck('name');
         }
-        if (in_array( $this->order_status , (array) self::$goodValueUpdateStatus)  )
+        if (in_array( $this->order_status , self::$goodValueUpdateStatus->toArray() )  )
             return true;
         return false;
     }

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AccountInformation extends Controller
 {
-
+ 
 
     public function index()
     {
@@ -23,7 +23,7 @@ class AccountInformation extends Controller
         $setting = Settings::where("keyname", "setting")->first();
         $status = OrderStatus::where("show_in_received_package", true)->get()->pluck('name');
 //        $packages = Package::doesntHave('invoice')->where(['member_id'=> Auth::id()])->get();
-        $packages = Package::query()->where(['member_id'=> Auth::id()])->whereIn('order_status' , (array) $status)->latest()->get();
+        $packages = Package::query()->where(['member_id'=> Auth::id()])->whereIn('order_status' , $status)->latest()->get();
         return view('member.my-account',compact( 'setting', 'packages'));
     }
 
@@ -41,7 +41,7 @@ class AccountInformation extends Controller
     {
         $setting = Settings::where("keyname", "setting")->first();
         $status = OrderStatus::where("show_in_shiped_package", true)->get()->pluck('name');
-        $packages = Package::with('invoice')->where(['member_id'=> Auth::id()])->whereIn('order_status' , (array) $status)->latest()->get();
+        $packages = Package::with('invoice')->where(['member_id'=> Auth::id()])->whereIn('order_status' , $status)->latest()->get();
         return view('member.shipped-packages',compact('packages', 'setting'));
     }
 

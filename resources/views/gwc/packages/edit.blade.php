@@ -205,6 +205,8 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#select2-dropdown').select2({
+                dropdownAutoWidth : false,
+                width: 'auto',
                 ajax: {
                     url: '{{ route('ajax-get-user-isocode') }}',
                     dataType: 'json',
