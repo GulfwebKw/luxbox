@@ -1,0 +1,35 @@
+@charset "utf-8";
+
+.rtl, p, table, section{direction:rtl; font:14px 'Almarai', Tahoma, Geneva, sans-serif !important; text-align:right; line-height:25px;}
+
+h6{font-family:'Almarai', Tahoma, Geneva, sans-serif !important; text-align:right;}
+
+h1, h2, h3, h4, h5{font-family:'Almarai', Tahoma, Geneva, sans-serif !important;}
+
+.navbar .navbar-nav>li>a, .module-contact .btn, .module-language .lang-list ul li:last-of-type a, .footer .widget-links ul li a{font-family:'Almarai', Tahoma, Geneva, sans-serif !important; font-size:13px;}
+
+.slider, .owl-carousel, .about .about-block .block-left p{direction:ltr;}
+.navbar .navbar-nav>li:last-child{margin-left:0 !important; margin-right: 25px;}
+.page-title .title .title-heading h1, .heading.heading-3, .about .about-block .block-left p, .accordion.accordion-3, .blog-entry .entry-content, .footer .footer-widget, .contact-info h6, .contact-info .contact-details .info, .cases-standard .case-item .case-content, .contact-card .contact-body .contactForm .card-heading{ text-align:right !important;}
+
+.accordion .card .card-heading .card-link:after, .accordion .card:first-of-type .card-heading .card-link:after, .accordion .card:not(:first-of-type):not(:last-of-type) .card-heading .card-link:after{right:100% !important;}
+.contact-info .contact-details .info li span::before{ margin-left:10px;}
+
+.blog-entry .entry-more a::before{content: "\e901" !important;}
+.contact-types .button i::before{margin-left: 20px;}
+
+.contact-card .contact-body .contactForm .form-control.nice-select.open .list{text-align:right !important;}
+.cta .icon-set .icon-panel{margin-right: 50px;}
+.title-heading h1, .breadcrumb{text-align:right !important;}
+
+.offset-lg-3{margin-right: 25% !important;}
+.slider .slide .slide-content{text-align:right; direction:rtl; float:right;}
+.col-lg-7{flex: 0 0 0 58.333333% !important;}
+
+.services-bar .services-bar-card .thumb-icon{margin-left: 20px; margin-right:0px;}
+.services-bar .services-bar-card{text-align:right !important;}
+
+
+.page-title .title .breadcrumb .breadcrumb-item+.breadcrumb-item::before {
+    content: "\f053" !important;
+}
