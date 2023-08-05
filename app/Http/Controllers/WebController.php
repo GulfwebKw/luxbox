@@ -77,10 +77,10 @@ class WebController extends Controller
 
     public function getUser(Request $request)
     {
-        return Member::query()->latest()->where('is_active', 1)->when($request->query('term') , function ($query) use($request) {
+        $users = Member::query()->latest()->where('is_active', 1)->when($request->query('term') , function ($query) use($request) {
             $query_search = explode('-', $request->query('term'));
             if ( count($query_search) == 2 and intval($query_search[1]) == $query_search[1] )
-                $query->where('id' , $query_search[1]);
+                $query->where('luxboxnum' , $query_search[1]);
             else
                 $query->where(function ($builder) use($request) {
                     $builder->where('civil_id' , 'like' , '%'.$request->query('term').'%')
@@ -90,12 +90,14 @@ class WebController extends Controller
                         ->orWhere('phone' , 'like' , '%'.$request->query('term').'%')
                         ->orWhere('mobile' , 'like' , '%'.$request->query('term').'%');
                 });
-        })->get()->each(function ($item) {
-            return [
-                'id' => $item->id,
-                'text' => $item->fullnamee,
+        })->get();
+        $result = [];
+        foreach($users as $user)
+            $result[] = [
+                'id' => $user->id,
+                'text' => $user->fullnamee,
             ];
-        } );
+        return $result;
     }
 
     public function refreshCaptcha()

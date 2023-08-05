@@ -64,9 +64,10 @@ class PackageController extends Controller
         $orderStatus = OrderStatus::where('is_active', 1)->get();
         $resources = $this->model::with('member')->when($request->query('q') , function ($query) use($request) {
             $query_search = explode('-', $request->query('q'));
-            if ( count($query_search) == 2 and intval($query_search[1]) == $query_search[1] )
-                $query->where('member_id' , $query_search[1]);
-            elseif ( count($query_search) == 1 and substr($query_search[0] , 0 , 1) == "#" )
+            if ( count($query_search) == 2 and intval($query_search[1]) == $query_search[1] ) {
+                $userId = Member::query()->where('luxboxnum' , $query_search[1])->get()->pluck('id')->toArray();
+                $query->whereIn('member_id', $userId);
+            }elseif ( count($query_search) == 1 and substr($query_search[0] , 0 , 1) == "#" )
                 $query->where('order' ,  substr($query_search[0] , 1));
             else
                 $query->where(function ($builder) use($request) {
@@ -129,8 +130,8 @@ class PackageController extends Controller
             'images' => implode(",", $request->images),
             'order' =>$order
         ]);
-         $package = Package::create($request->except('image'));
-         $package->update(['image'=>$cover_image]);
+        $package = Package::create($request->except('image'));
+        $package->update(['image'=>$cover_image]);
         return redirect()->route('packages.index');
     }
 
@@ -180,7 +181,7 @@ class PackageController extends Controller
         $package = Package::find($id);
         $images = $package->images;
         if ($request->hasFile('image')){
-        $cover_image = Common::uploadImage($request, 'image', $this->path, $this->image_big_w, $this->image_big_h, $this->image_thumb_w, $this->image_thumb_h);
+            $cover_image = Common::uploadImage($request, 'image', $this->path, $this->image_big_w, $this->image_big_h, $this->image_thumb_w, $this->image_thumb_h);
             $package->update(['image'=>$cover_image]);
         }
         if (isset($request->images) && count($request->images)>0){
@@ -191,7 +192,7 @@ class PackageController extends Controller
             }
             $img = $request->images;
             if ($images!=""){
-            $images = explode(',', $images);
+                $images = explode(',', $images);
                 $img =  array_merge($images, $img);
             }
             $images = implode(',', $img);
@@ -199,7 +200,7 @@ class PackageController extends Controller
         $request->merge([
             'images' => $images,
         ]);
-         $package->update($request->except('image'));
+        $package->update($request->except('image'));
         return redirect()->route('packages.index');
     }
 

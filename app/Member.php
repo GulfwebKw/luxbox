@@ -44,9 +44,16 @@ class Member extends Authenticatable
 
     public function getISOCODE()
     {
-        return strtoupper(optional($this->country)->iso_code) .'-' . $this->id ;
+//        return strtoupper(optional($this->country)->iso_code) .'-' . $this->id ;
+        return 'LUX-' . $this->luxboxnum ;
     }
 
+    public function getValidLuxBoxNumber(){
+        do {
+            $random = rand(1000 , 9999);
+        } while ( ! Member::query()->where('luxboxnum' , $random)->exists());
+        return $random;
+    }
 
     public function getFullnameAttribute()
     {

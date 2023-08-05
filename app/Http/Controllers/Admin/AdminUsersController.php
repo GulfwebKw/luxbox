@@ -66,7 +66,7 @@ class AdminUsersController extends Controller
         $resources = Member::query()->latest()->when($request->query('q') , function ($query) use($request) {
             $query_search = explode('-', $request->query('q'));
             if ( count($query_search) == 2 and intval($query_search[1]) == $query_search[1] )
-                $query->where('id' , $query_search[1]);
+                $query->where('luxboxnum' , $query_search[1]);
             else
                 $query->where(function ($builder) use($request) {
                    $builder->where('civil_id' , 'like' , '%'.$request->query('q').'%')
@@ -95,7 +95,7 @@ class AdminUsersController extends Controller
                 ->latest()->when($request->query('q') , function ($query) use($request) {
                     $query_search = explode('-', $request->query('q'));
                     if ( count($query_search) == 2 and intval($query_search[1]) == $query_search[1] )
-                        $query->where('id' , $query_search[1]);
+                        $query->where('luxboxnum' , $query_search[1]);
                     else
                         $query->where(function ($builder) use($request) {
                             $builder->where('civil_id' , 'like' , '%'.$request->query('q').'%')
@@ -186,6 +186,7 @@ class AdminUsersController extends Controller
         $member->snapchat = $request->input('snapchat');
         $member->home_paci = $request->input('home_paci');
         $member->is_approved = $request->input('is_approved');
+        $member->luxboxnum = $member->getValidLuxBoxNumber();
         $member->save();
 
         //save logs
@@ -261,6 +262,9 @@ class AdminUsersController extends Controller
     public function update(Request $request, $id)
     {
         //field validation
+        $this->validate($request, [
+            'luxboxnum' => 'required|unique:members,luxboxnum,' . $id,
+        ]);
 
         $resource = $this->model::find($id);
 
@@ -292,6 +296,7 @@ class AdminUsersController extends Controller
             'snapchat' => $request->input('snapchat'),
             'home_paci' => $request->input('home_paci'),
             'is_approved' => $request->input('is_approved'),
+            'luxboxnum' => $request->input('luxboxnum'),
         ]);
         //save logs
         $key_name = $this->title;

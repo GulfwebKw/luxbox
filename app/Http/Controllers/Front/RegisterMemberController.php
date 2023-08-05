@@ -82,6 +82,7 @@ class RegisterMemberController extends Controller
        $member->tiktok = $request->input('tiktok');
        $member->snapchat = $request->input('snapchat');
        $member->home_paci = $request->input('home_paci');
+       $member->luxboxnum = $member->getValidLuxBoxNumber();
        $member->save();
        //insert to database
        $toast = Toastr::success(__('website.member.registerSuccessfully'));

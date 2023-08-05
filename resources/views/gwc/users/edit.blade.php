@@ -39,14 +39,14 @@
 
             <div class="form-group">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         @component('gwc.components.editTextInput', [
                             'label' => 'Company Name',
                             'name' => 'company_name',
                             'value'=>$resource->company_name,
                         ]) @endcomponent
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         @component('gwc.components.editTextInput', [
                             'label' => 'phone',
                             'name' => 'phone',
@@ -54,11 +54,19 @@
                             'required' => true
                         ]) @endcomponent
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         @component('gwc.components.editTextInput', [
                             'label' => 'Mobile',
                             'name' => 'mobile',
                             'value'=>$resource->mobile,
+                            'required' => true
+                        ]) @endcomponent
+                    </div>
+                    <div class="col-md-3">
+                        @component('gwc.components.editTextInput', [
+                            'label' => 'Lux Box Number (LUX-1234)',
+                            'name' => 'luxboxnum',
+                            'value'=>$resource->luxboxnum,
                             'required' => true
                         ]) @endcomponent
                     </div>
@@ -289,7 +297,7 @@
             $.ajax({
                 type: "POST",
                 url: "/gwc/get-country-cities-edit",
-                data: {country_id: @json($resource->country), id: '{{$resource->city}}'},
+                data: {country_id: '{{$resource->country_id}}', id: '{{$resource->city_id}}'},
                 beforeSend: function () {
                     $("#city-list").addClass("loader");
                 },
@@ -297,11 +305,11 @@
                     $("#city-list").html(data);
                     $("#city-list").prop('disabled', false);
                     $("#city-list").removeClass("loader");
-                    document.getElementById('city-list').value=@json($resource->city);
+                    document.getElementById('city-list').value='{{$resource->city_id}}';
                     $.ajax({
                         type: "POST",
                         url: "/gwc/get-city-areas",
-                        data: 'city_id=' + @json($resource->city),
+                        data: 'city_id={{$resource->city_id}}',
                         beforeSend: function () {
                             $("#area-list").addClass("loader");
                         },
@@ -309,7 +317,7 @@
                             $("#area-list").html(data);
                             $("#area-list").prop('disabled', false);
                             $("#area-list").removeClass("loader");
-                            document.getElementById('area-list').value=@json($resource->area);
+                            document.getElementById('area-list').value='{{$resource->area_id}}';
                         }
                     });
                 }
