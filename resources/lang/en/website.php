@@ -147,6 +147,7 @@ return [
         'Snapchat' => 'Snapchat',
         'TikTok' => 'TikTok',
         'Home_PACI' => 'Home PACI',
+        'package' => 'Package',
         'password_update' => 'Your password has been changed!',
         'Original_track_id' => 'Original track ID',
         'goods_value' => 'Goods value',
