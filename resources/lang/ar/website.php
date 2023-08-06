@@ -147,6 +147,7 @@ return [
         'Snapchat' => 'سناب شات',
         'TikTok' => 'تيك توك',
         'Home_PACI' => 'المنزل PACI',
+        'package' => 'طَرد',
         'password_update' => 'تم تغيير كلمة السر الخاصة بك!',
         'Original_track_id' => 'معرف المسار الأصلي',
         'goods_value' => 'قيمة السلع',
