@@ -123,7 +123,7 @@
         <ul class="list-unstyled info">
         <li><span class="fas fa-map-marker-alt"></span><a href="javascript:void(0)">{!! $setting['address_'.$lang] !!}</a></li>
         <li><span class="fas fa-envelope"></span><a href="#"><span class="__cf_email__" data-cfemail="4f0a3e3a263b2e0f78203d202029612c2022">{!! $setting->email !!}</span></a></li>
-        <li @if($lang != "en" ) style="direction: ltr;" @endif><span class="fas fa-phone-alt @if($lang != "en" ) float-right @endif"></span><a href="tel:{!! $setting->phone !!}">{!! $setting->phone !!}</a></li>
+        <li @if($lang != "en" ) style="direction: ltr;" @endif><span class="fas fa-phone-alt @if($lang != "en" ) float-right @endif"></span><a href="tel:{!! $setting->mobile !!}">{!! $setting->mobile !!}</a></li>
         </ul>
         </div>
         </div>

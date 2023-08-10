@@ -56,11 +56,11 @@
                         <p>{{ __('website.content.Quick_Contact_description') }}</p>
                         <ul>
                             <li class="phone">
-                                <a href="tel:{{getSetting('setting')['phone']}}" target="_blank">
+                                <a href="tel:{{getSetting('setting')['mobile']}}" target="_blank">
                                     @if ( app()->getLocale() == "ar" )
-                                        {{getSetting('setting')['phone']}} <i class="fa fa-phone fa-lg"></i>
+                                        {{getSetting('setting')['mobile']}} <i class="fa fa-phone fa-lg"></i>
                                     @else
-                                        <i class="fa fa-phone fa-lg"></i> {{getSetting('setting')['phone']}}
+                                        <i class="fa fa-phone fa-lg"></i> {{getSetting('setting')['mobile']}}
                                     @endif
                                 </a>
                             </li>
